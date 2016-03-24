@@ -1,0 +1,4 @@
+venv
+*.py[cdo]
+*.pex
+*.egg-info*
