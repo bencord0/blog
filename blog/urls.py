@@ -6,5 +6,5 @@ import blog.core.views
 urlpatterns = [
 #     url(r'^admin/', admin.site.urls),
     url(r'^$', blog.core.views.index),
-    url(r'^(?P<slug>[a-z-]+)/', blog.core.views.slug),
+    url(r'^(?P<slug>[a-z0-9-]+)/', blog.core.views.slug),
 ]
