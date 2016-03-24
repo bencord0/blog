@@ -1,0 +1,17 @@
+blog.condi.me
+-------------
+
+This is a reimplementation of my blog in rust.
+
+Getting started
+---------------
+
+1/. Run the blog engine
+
+  $ git clone https://github.com/bencord0/blog
+  $ git clone https://github.com/bencord0/blogposts
+
+  $ (cd blog; cargo build)
+  $ (cd blogposts; ../blog/target/debug/blog)
+
+2/. Report inconsistencies with the live site, and make suggestions.
