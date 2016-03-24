@@ -1,0 +1,17 @@
+blog.condi.me
+-------------
+
+This is a reimplementation of my blog in python (django).
+
+Getting started
+---------------
+
+1/. Run the blog engine
+
+  $ git clone https://github.com/bencord0/blog -b python-django
+  $ git clone https://github.com/bencord0/blogposts
+
+  $ (cd blog; ./build)
+  $ (cd blogposts; ../blog/blog.pex)
+
+2/. Report inconsistencies with the live site, and make suggestions.
