@@ -2,12 +2,16 @@ from setuptools import setup
 
 setup(
     name='blog',
-    packages=['blog'],
+    packages=[
+        'blog',
+        'blog.core',
+    ],
     install_requires=[
         'django',
         'dj-database-url',
         'dj-static',
         'gunicorn',
+        'markdown',
     ],
     entry_points={
         'console_scripts': [

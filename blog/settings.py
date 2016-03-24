@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gunicorn',
+
+    'blog.core',
 ]
 
 MIDDLEWARE_CLASSES = [
