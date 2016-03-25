@@ -24,7 +24,7 @@ app.get('/', function(request, response) {
     recent_entries.push(entries[date]);
   });
 
-  response.render('index.html', {
+  response.render('index.html.j2', {
     'recent_entries': recent_entries
   });
 });
@@ -38,7 +38,7 @@ app.get('/:slug/', function(request, response) {
               {encoding: 'utf-8'},
               function(err, data) {
     if (err) throw err;
-    response.render('entry.html', {
+    response.render('entry.html.j2', {
       'html': Markdown(data),
       'entry': meta,
     });
