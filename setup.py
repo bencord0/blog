@@ -11,6 +11,7 @@ setup(
         'dj-database-url',
         'dj-static',
         'gunicorn',
+        'jinja2',
         'markdown',
     ],
     entry_points={

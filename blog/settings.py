@@ -6,6 +6,7 @@ import dj_database_url
 
 Truthy = ['True', 'true', '1', 'yes', 'y']
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CUR_DIR = os.path.abspath(os.curdir)
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 if not SECRET_KEY:
@@ -62,6 +63,10 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+    },
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [os.path.join(CUR_DIR, 'templates')],
     },
 ]
 

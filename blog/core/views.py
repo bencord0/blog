@@ -1,6 +1,6 @@
 import glob
 import json
-import markdown
+from markdown import Markdown
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -14,15 +14,12 @@ def index(request):
 
         entries[entry['date']] = entry
 
-    recent_entries = sorted(entries.keys())
+    recent_entries = [entries[d] for d in sorted(entries.keys())]
     recent_entries.reverse()
 
-    html = ''
-    for datestamp in recent_entries:
-        html += '<p><a href="/{slug}/">{title}</a>&nbsp;{date}</p>\n'.format(
-            **entries[datestamp])
-
-    return HttpResponse(html)
+    return render(request, 'index.html.j2', {
+        'recent_entries': recent_entries,
+    })
 
 
 def slug(request, slug):
@@ -30,9 +27,11 @@ def slug(request, slug):
         metadata = json.loads(f.read())
 
     with open('markdown/{}.md'.format(slug)) as f:
-        markup = f.read()
+        markup = _md(f.read())
 
-    return HttpResponse(
-        '<pre>{}</pre>\n{}'
-        .format(json.dumps(metadata), markdown.markdown(markup))
-    )
+    return render(request, 'entry.html.j2', {
+        'entry': metadata,
+        'html': markup,
+    })
+
+_md = Markdown().convert
