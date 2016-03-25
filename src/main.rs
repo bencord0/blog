@@ -9,7 +9,7 @@ use glob::glob;
 use hoedown::{Markdown, Render};
 use hoedown::renderer::html::{Flags, Html};
 use pencil::Pencil;
-use pencil::{Request, PencilResult, Response};
+use pencil::{Request, PencilResult};
 use rustc_serialize::json::{self, ToJson, Json};
 use std::collections::BTreeMap;
 use std::env;
@@ -25,14 +25,13 @@ struct MetaData {
 
 impl ToJson for MetaData {
     fn to_json(&self) -> Json {
-        let mut btree: BTreeMap<String, String> = BTreeMap::new();
-        btree.insert("date".to_string(), self.date.clone());
-        btree.insert("slug".to_string(), self.slug.clone());
-        btree.insert("title".to_string(), self.title.clone());
-        btree.to_json()
+        let mut obj = BTreeMap::new();
+        obj.insert("date".to_string(), self.date.to_json());
+        obj.insert("slug".to_string(), self.slug.to_json());
+        obj.insert("title".to_string(), self.title.to_json());
+        Json::Object(obj)
     }
 }
-
 
 fn index(request: &mut Request) -> PencilResult {
   println!("[{}]{}", request.method(), request.path().unwrap());
@@ -48,7 +47,6 @@ fn index(request: &mut Request) -> PencilResult {
     let md: MetaData = json::decode(entry_r.as_str()).unwrap();
 
     entries.insert(md.date.clone(), md);
-
   }
 
   for (_, meta) in entries.into_iter() {
@@ -59,7 +57,7 @@ fn index(request: &mut Request) -> PencilResult {
   let mut context = BTreeMap::new();
   context.insert("recent_entries".to_string(), recent_entries);
 
-  match request.app.render_template("index.html", &context) {
+  match request.app.render_template("index.html.hb", &context) {
     Ok(x) => Ok(x),
     Err(x) => { println!("{:?}", x); Err(x) },
   }
@@ -68,7 +66,6 @@ fn index(request: &mut Request) -> PencilResult {
 fn slug(request: &mut Request) -> PencilResult {
   println!("[{}]{}", request.method(), request.path().unwrap());
   let slug = request.view_args.get("slug").unwrap();
-  println!("{}", slug);
 
   let meta = format!("metadata/{}.json", slug);
   let mut meta_f = File::open(meta).unwrap();
@@ -82,10 +79,17 @@ fn slug(request: &mut Request) -> PencilResult {
   let _ = mark_f.read_to_string(&mut mark_r);
   let markdown = Markdown::new(mark_r.as_str());
 
-  println!("{} authored on {}", metadata.title, metadata.date);
 
   let mut html = Html::new(Flags::empty(), 0);
-  Ok(Response::from(html.render(&markdown).to_str().unwrap()))
+  let mut context = BTreeMap::new();
+  context.insert("entry".to_string(), metadata.to_json());
+  // XXX: impl ToJson for hoedown::buffer::Buffer
+  context.insert("html".to_string(), html.render(&markdown).to_str().unwrap().to_json());
+
+  match request.app.render_template("entry.html.hb", &context) {
+      Ok(x) => Ok(x),
+      Err(x) => { println!("{:?}", x); Err(x) },
+  }
 }
 
 fn main() {
@@ -115,8 +119,8 @@ fn main() {
   app.set_log_level();
   app.enable_static_file_handling();
 
-  app.register_template("index.html");
-  app.register_template("entry.html");
+  app.register_template("index.html.hb");
+  app.register_template("entry.html.hb");
 
   app.get("/", "index", index);
   app.get("/<slug>/", "slug", slug);
