@@ -1,0 +1,14 @@
+{
+  "name": "blog",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "4.13.3",
+    "glob-fs": "0.1.6",
+    "node-markdown": "0.1.1",
+    "nunjucks": "2.4.1"
+  }
+}

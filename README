@@ -1,0 +1,17 @@
+blog.condi.me
+-------------
+
+This is a reimplementation of my blog in node.
+
+Getting started
+---------------
+
+1/. Run the blog engine
+
+  $ git clone https://github.com/bencord0/blog -b node-express
+  $ git clone https://github.com/bencord0/blogposts
+
+  $ (cd blog; npm install)
+  $ (cd blogposts; node ../blog/index.js)
+
+2/. Report inconsistencies with the live site, and make suggestions.
