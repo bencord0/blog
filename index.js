@@ -5,20 +5,28 @@ var glob = require('glob-fs')();
 var Markdown = require('node-markdown').Markdown;
 var app = express();
 
-nunjucks.configure('templates', {
+njk = nunjucks.configure('templates', {
   autoescape: true,
   express: app
 });
 
-app.get('/', function(request, response) {
+njk.addGlobal('static', function(thing) {
+  return '/static/' + thing;
+});
 
-  recent_entries = [];
+function get_recent_entries(count) {
+  var recent_entries = [];
   Object.keys(entries_by_date).sort().reverse().map(function(date) {
     recent_entries.push(entries_by_date[date]);
   });
 
+  return recent_entries.slice(0, count);
+}
+
+app.get('/', function(request, response) {
+  recent_entries = get_recent_entries(10);
   response.render('index.html.j2', {
-    'recent_entries': recent_entries
+    'recent_entries': recent_entries,
   });
 });
 
@@ -31,9 +39,12 @@ app.get('/:slug/', function(request, response) {
               {encoding: 'utf-8'},
               function(err, data) {
     if (err) throw err;
+
+    recent_entries = get_recent_entries(10);
     response.render('entry.html.j2', {
       'html': Markdown(data),
       'entry': meta,
+      'recent_entries': recent_entries,
     });
   });
 });
@@ -50,6 +61,7 @@ files.map(function(file) {
 
 
 app.set('port', (process.env.PORT || 8000));
+app.use('/static', express.static('static'));
 app.listen(app.get('port'), function() {
   console.log('Blog is running on port', app.get('port'));
 });
