@@ -8,6 +8,7 @@ setup(
     ],
     install_requires=[
         'django',
+        'django-debug-toolbar',
         'dj-database-url',
         'dj-static',
         'gunicorn',

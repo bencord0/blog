@@ -12,7 +12,9 @@ def index(request):
 
 def slug(request, slug):
     entry = get_entry(slug)
+    recent_entries = get_recent_entries(10)
     return render(request, 'entry.html.j2', {
         'entry': entry,
         'html': entry['html'],
+        'recent_entries': recent_entries,
     })

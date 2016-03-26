@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'gunicorn',
 
     'blog.core',
@@ -50,6 +51,10 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 
+STATICFILES_DIRS = [
+    os.path.join(CUR_DIR, 'static'),
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -67,6 +72,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
         'DIRS': [os.path.join(CUR_DIR, 'templates')],
+        'OPTIONS': {
+            'environment': 'blog.core.jinja2.environment',
+        },
     },
 ]
 
