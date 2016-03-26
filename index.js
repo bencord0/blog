@@ -11,17 +11,10 @@ nunjucks.configure('templates', {
 });
 
 app.get('/', function(request, response) {
-  files = glob.readdirSync('metadata/*.json');
-
-  entries = {};
-  files.map(function(file) {
-    entry = JSON.parse(fs.readFileSync(file));
-    entries[entry.date] = entry;
-  });
 
   recent_entries = [];
-  Object.keys(entries).sort().reverse().map(function(date) {
-    recent_entries.push(entries[date]);
+  Object.keys(entries_by_date).sort().reverse().map(function(date) {
+    recent_entries.push(entries_by_date[date]);
   });
 
   response.render('index.html.j2', {
@@ -32,7 +25,7 @@ app.get('/', function(request, response) {
 app.get('/:slug/', function(request, response) {
   slug = request.params.slug;
 
-  meta = JSON.parse(fs.readFileSync('metadata/' + slug + '.json'))
+  meta = entries_by_slug[slug];
 
   fs.readFile('markdown/' + slug + '.md',
               {encoding: 'utf-8'},
@@ -44,6 +37,17 @@ app.get('/:slug/', function(request, response) {
     });
   });
 });
+
+
+files = glob.readdirSync('metadata/*.json');
+entries_by_date = {};
+entries_by_slug = {};
+files.map(function(file) {
+  entry = JSON.parse(fs.readFileSync(file));
+  entries_by_date[entry.date] = entry;
+  entries_by_slug[entry.slug] = entry;
+});
+
 
 app.set('port', (process.env.PORT || 8000));
 app.listen(app.get('port'), function() {
