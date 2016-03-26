@@ -1,3 +1,7 @@
 general:
   artifacts:
     - "blog.pex"
+
+test:
+  post:
+    - pex -vv -o blog.pex --disable-cache . -m blog
