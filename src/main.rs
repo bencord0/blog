@@ -33,11 +33,9 @@ impl ToJson for MetaData {
     }
 }
 
-fn index(request: &mut Request) -> PencilResult {
-  println!("[{}]{}", request.method(), request.path().unwrap());
-
+fn get_recent_entries() -> Vec<Json> {
   let mut entries = BTreeMap::new();
-  let mut recent_entries: Vec<MetaData> = Vec::new();
+  let mut recent_entries: Vec<Json> = Vec::new();
 
   for entry in glob("metadata/*.json").unwrap() {
     let entry = entry.unwrap();
@@ -50,12 +48,20 @@ fn index(request: &mut Request) -> PencilResult {
   }
 
   for (_, meta) in entries.into_iter() {
-    recent_entries.push(meta);
+    recent_entries.push(meta.to_json());
   }
-  recent_entries.reverse();
 
-  let mut context = BTreeMap::new();
-  context.insert("recent_entries".to_string(), recent_entries);
+  recent_entries.reverse();
+  recent_entries 
+}
+
+fn index(request: &mut Request) -> PencilResult {
+  println!("[{}]{}", request.method(), request.path().unwrap());
+
+  let recent_entries = get_recent_entries();
+ 
+  let mut context: BTreeMap<String, Json> = BTreeMap::new();
+  context.insert("recent_entries".to_string(), recent_entries.to_json());
 
   match request.app.render_template("index.html.hb", &context) {
     Ok(x) => Ok(x),
@@ -85,6 +91,9 @@ fn slug(request: &mut Request) -> PencilResult {
   context.insert("entry".to_string(), metadata.to_json());
   // XXX: impl ToJson for hoedown::buffer::Buffer
   context.insert("html".to_string(), html.render(&markdown).to_str().unwrap().to_json());
+
+  let recent_entries = get_recent_entries();
+  context.insert("recent_entries".to_string(), recent_entries.to_json());
 
   match request.app.render_template("entry.html.hb", &context) {
       Ok(x) => Ok(x),
