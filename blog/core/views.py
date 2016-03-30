@@ -5,16 +5,18 @@ from .utils import get_recent_entries, get_entry
 
 def index(request):
     recent_entries = get_recent_entries(10)
-    return render(request, 'index.html.j2', {
+    context = {
         'recent_entries': recent_entries,
-    })
+    }
+    return render(request, 'index.html.j2', context)
 
 
 def slug(request, slug):
     entry = get_entry(slug)
     recent_entries = get_recent_entries(10)
-    return render(request, 'entry.html.j2', {
+    context = {
         'entry': entry,
         'html': entry['html'],
         'recent_entries': recent_entries,
-    })
+    }
+    return render(request, 'entry.html.j2', context)

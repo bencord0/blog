@@ -9,6 +9,14 @@ datetuple = namedtuple('datetuple', ['year', 'month', 'day'])
 _md = Markdown().convert
 
 
+def _add_summary(entry):
+    with open('markdown/{}.md'.format(entry['slug'])) as f:
+        markup = f.read()
+        summary = _md(markup).split('</p>', 1)[0]
+        entry['summary'] = summary
+    return entry
+
+
 def get_recent_entries(count=10):
     entries = {}
     for filename in glob.glob('metadata/*.json'):
@@ -20,7 +28,10 @@ def get_recent_entries(count=10):
     recent_entries = [entries[d] for d in sorted(entries.keys())]
     recent_entries.reverse()
 
-    return recent_entries[:count]
+    recent_entries = list(map(_add_summary, recent_entries[:count]))
+
+    return recent_entries
+
 
 
 def get_entry(slug):
