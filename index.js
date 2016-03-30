@@ -33,28 +33,27 @@ app.get('/', function(request, response) {
 app.get('/:slug/', function(request, response) {
   slug = request.params.slug;
 
-  meta = entries_by_slug[slug];
+  entry = entries_by_slug[slug];
+  recent_entries = get_recent_entries(10);
 
-  fs.readFile('markdown/' + slug + '.md',
-              {encoding: 'utf-8'},
-              function(err, data) {
-    if (err) throw err;
-
-    recent_entries = get_recent_entries(10);
-    response.render('entry.html.j2', {
-      'html': Markdown(data),
-      'entry': meta,
-      'recent_entries': recent_entries,
-    });
+  response.render('entry.html.j2', {
+    'entry': entry,
+    'html': entry.html,
+    'recent_entries': recent_entries,
   });
 });
-
 
 files = glob.readdirSync('metadata/*.json');
 entries_by_date = {};
 entries_by_slug = {};
 files.map(function(file) {
   entry = JSON.parse(fs.readFileSync(file));
+  entry.md = fs.readFileSync('markdown/' + entry.slug + '.md',
+                             {encoding: 'utf-8'});
+
+  entry.html = Markdown(entry.md);
+  entry.summary = entry.html.split('</p>', 1)[0];
+
   entries_by_date[entry.date] = entry;
   entries_by_slug[entry.slug] = entry;
 });
