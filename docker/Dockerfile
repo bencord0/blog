@@ -1,0 +1,8 @@
+FROM scratch
+
+ADD ./blog /blog
+ENV BIND 0.0.0.0
+ENV PORT 80
+EXPOSE 80
+WORKDIR /
+ENTRYPOINT ["/blog"]
