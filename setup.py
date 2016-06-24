@@ -7,6 +7,7 @@ setup(
         'blog.core',
     ],
     install_requires=[
+        'arrow',
         'django',
         'django-debug-toolbar',
         'dj-database-url',
