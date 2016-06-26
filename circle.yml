@@ -2,6 +2,10 @@ general:
   artifacts:
     - "blog.pex"
 
+machine:
+  python:
+    version: 3.5.1
+
 test:
   post:
     - pex -vv -o blog.pex --disable-cache . -m blog
