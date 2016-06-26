@@ -8,7 +8,7 @@ setup(
     ],
     install_requires=[
         'arrow',
-        'django',
+        'Django==1.9.7',
         'django-debug-toolbar',
         'dj-database-url',
         'dj-static',
