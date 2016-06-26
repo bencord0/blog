@@ -36,11 +36,11 @@ def get_recent_entries(count=10):
 
 
 def get_entry(slug):
-    with open('metadata/{}.json'.format(slug)) as f:
-        entry = json.loads(f.read())
+    with open('metadata/{}.json'.format(slug), 'rb') as f:
+        entry = json.loads(f.read().decode('utf-8'))
 
-    with open('markdown/{}.md'.format(slug)) as f:
-        markup = f.read()
+    with open('markdown/{}.md'.format(slug), 'rb') as f:
+        markup = f.read().decode('utf-8')
         html = _md(markup)
         summary = html.split('</p>', 1)[0]
 
