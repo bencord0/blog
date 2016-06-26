@@ -16,7 +16,14 @@ def slug(request, slug):
     recent_entries = get_recent_entries(10)
     context = {
         'entry': entry,
-        'html': entry['html'],
         'recent_entries': recent_entries,
     }
     return render(request, 'entry.html.j2', context)
+
+
+def about(request):
+    recent_entries = get_recent_entries(10)
+    context = {
+        'recent_entries': recent_entries,
+    }
+    return render(request, 'about.html.j2', context)
