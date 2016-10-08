@@ -1,7 +1,6 @@
 from django.contrib.syndication.views import Feed
-from django.utils.feedgenerator import Atom1Feed
-from django.utils.html import escape
 from django.core.urlresolvers import reverse
+from django.utils.feedgenerator import Atom1Feed
 
 from blog.core.models import Entry
 
@@ -14,7 +13,7 @@ class RssBlogFeed(Feed):
 
     def updateddate(self):
         return Entry.objects.order_by('-date').first().date
-        
+
     def items(self):
         return Entry.objects.order_by('-date')
 
@@ -41,7 +40,8 @@ class ContentAtom1Feed(Atom1Feed):
     def add_item_elements(self, handler, item):
         super(ContentAtom1Feed, self).add_item_elements(handler, item)
         if item['content'] is not None:
-            handler.addQuickElement('content', item['content'], {'type': 'html'})
+            handler.addQuickElement(
+                'content', item['content'], {'type': 'html'})
 
 
 class AtomBlogFeed(RssBlogFeed):

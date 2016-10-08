@@ -1,10 +1,10 @@
 import os
 import sys
 
+
 def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "blog.settings")
     from django.core.management import execute_from_command_line
-    from django.conf import settings
     from gunicorn.app.wsgiapp import run
 
     if len(sys.argv) >= 2 and sys.argv[1] == 'manage':

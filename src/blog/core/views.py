@@ -1,6 +1,6 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-from .utils import get_all_entries, get_recent_entries, get_entry
+
+from .utils import get_all_entries, get_entry, get_recent_entries
 
 
 def index(request):

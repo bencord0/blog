@@ -2,6 +2,7 @@ import json
 
 from glob import glob
 from os.path import abspath, join
+
 from django.core.management.base import BaseCommand
 
 from blog.core.models import Entry
@@ -19,8 +20,8 @@ class Command(BaseCommand):
         print(path)
         for entry_path in glob(join(path, 'metadata/*.json')):
             with open(entry_path) as p:
-               entry = json.loads(p.read())
-               process_entry(path, entry)
+                entry = json.loads(p.read())
+                process_entry(path, entry)
 
 
 def process_entry(path, data):

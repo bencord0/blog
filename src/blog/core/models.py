@@ -1,9 +1,12 @@
 import arrow
+
 from django.core.urlresolvers import reverse
 from django.db import models
+
 from markdown import Markdown
 
 _md = Markdown().convert
+
 
 class Entry(models.Model):
     slug = models.SlugField(primary_key=True, max_length=128)
