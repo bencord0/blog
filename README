@@ -15,3 +15,9 @@ Getting started
   $ (cd blogposts; ../blog/run.sh)
 
 2/. Report inconsistencies with the live site, and make suggestions.
+
+Using the Dockerfile
+--------------------
+
+  $ ./build.sh && ./release.sh
+  $ docker run -p 8000:8000 -v $PWD/../blogposts:/posts:ro -w /posts -t blog

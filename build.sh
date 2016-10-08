@@ -7,6 +7,7 @@ fi
 
 source venv/bin/activate
 
-pip install -U pip tox
+pip install -U pip
+pip install -U -r requirements.txt
 
 tox
