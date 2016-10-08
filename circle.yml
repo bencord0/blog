@@ -3,8 +3,8 @@ general:
     - "blog.pex"
 
 machine:
-  python:
-    version: 3.5.1
+  post:
+    - pyenv global 2.7.12 3.4.5 3.5.2 
 
 test:
   post:

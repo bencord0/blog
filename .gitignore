@@ -3,6 +3,9 @@ venv
 *.pex
 *.egg-info*
 
+.coverage
+.tox
+
 build
 db.sqlite3
 dist
