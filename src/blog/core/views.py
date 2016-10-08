@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .utils import get_recent_entries, get_entry
+from .utils import get_all_entries, get_recent_entries, get_entry
 
 
 def index(request):
@@ -27,3 +27,13 @@ def about(request):
         'recent_entries': recent_entries,
     }
     return render(request, 'about.html.j2', context)
+
+
+def archive(request):
+    all_entries = get_all_entries()
+    recent_entries = all_entries[:10]
+    context = {
+        'recent_entries': recent_entries,
+        'all_entries': all_entries,
+    }
+    return render(request, 'archive.html.j2', context)

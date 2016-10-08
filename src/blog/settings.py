@@ -11,7 +11,6 @@ CUR_DIR = os.path.abspath(os.curdir)
 SECRET_KEY = os.environ.get('SECRET_KEY')
 if not SECRET_KEY:
     import random
-    print('SECRET_KEY not set', file=sys.stderr)
     SECRET_KEY = ''.join([random.SystemRandom().choice(
         'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
     ) for i in range(50)])
@@ -42,6 +41,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 WSGI_APPLICATION = 'blog.wsgi.application'
@@ -83,24 +83,14 @@ DATABASES = {
         default='sqlite:///{}/db.sqlite3'.format(BASE_DIR))
 }
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
 LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}

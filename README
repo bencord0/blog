@@ -12,7 +12,8 @@ Getting started
   $ git clone https://github.com/bencord0/blogposts
 
   $ (cd blog; ./build.sh)
-  $ (cd blogposts; ../blog/blog.pex manage collectstatic --noinput)
-  $ (cd blogposts; ../blog/blog.pex)
+  $ ./blog/blog.pex manage migrate
+  $ ./blog/blog.pex manage import_entries blogposts
+  $ (cd blogposts; ./blog/blog.pex)
 
 2/. Report inconsistencies with the live site, and make suggestions.

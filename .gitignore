@@ -4,3 +4,8 @@ venv
 *.egg-info*
 
 build
+db.sqlite3
+dist
+staticfiles
+target
+docker

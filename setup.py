@@ -1,15 +1,14 @@
-from setuptools import setup
+from setuptools import find_packages, setup
 
 setup(
     name='blog',
-    packages=[
-        'blog',
-        'blog.core',
-    ],
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
     install_requires=[
         'arrow',
-        'Django==1.9.7',
+        'Django',
         'django-debug-toolbar',
+        'djangorestframework',
         'dj-database-url',
         'dj-static',
         'gunicorn',
