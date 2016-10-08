@@ -4,6 +4,7 @@ from twisted.internet import endpoints
 from twisted.internet.defer import Deferred, ensureDeferred
 from twisted.web.resource import Resource
 from twisted.web.server import NOT_DONE_YET, Site
+
 from blog.static import StaticDirectory
 
 
@@ -48,7 +49,6 @@ class WebServer(Resource):
         self.staticprefix = staticprefix
         if staticprefix and staticdir:
             self.static = StaticDirectory(staticdir, staticprefix)
-
 
         self.Http404 = Http404
         self.Http405 = Http405

@@ -1,6 +1,6 @@
-import blog.core
-
 from twisted.internet import reactor
+
+import blog.core
 
 
 def test_blog():

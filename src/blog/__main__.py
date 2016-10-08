@@ -1,10 +1,10 @@
 import os
 
+from twisted.internet import reactor
+
 from blog import settings
 from blog.core import WebServer
 from blog.views import Http404
-
-from twisted.internet import reactor
 
 
 def main():

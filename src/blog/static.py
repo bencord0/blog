@@ -1,5 +1,5 @@
-import os
 import mimetypes
+import os
 
 from twisted.python.filepath import FilePath
 from twisted.web.server import NOT_DONE_YET
@@ -45,7 +45,7 @@ class StaticDirectory:
             if encoding:
                 contenttype += '; charset={}'.format(encoding)
             request.setHeader(
-                'Content-Type', contenttype) 
+                'Content-Type', contenttype)
             request.setHeader(
                 'Content-Length', '{}'.format(static_file.getsize()))
 

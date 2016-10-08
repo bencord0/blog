@@ -1,4 +1,6 @@
 twisted
 django
+flake8
+flake8-import-order
 hendrix
 wheel

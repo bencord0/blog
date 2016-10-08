@@ -1,4 +1,5 @@
 from jinja2 import Environment, FileSystemLoader
+
 from markdown import Markdown
 
 from blog import settings

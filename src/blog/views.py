@@ -1,7 +1,3 @@
-from twisted.internet import reactor
-from twisted.internet.defer import Deferred
-from twisted.internet.protocol import Protocol
-
 from blog.core import Response
 from blog.utils import get_recent_entries, render_template
 
