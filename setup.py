@@ -9,6 +9,8 @@ setup(
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[
+        "jinja2",
+        "Markdown",
         "twisted>=16.4.0",
     ],
     entry_points={
