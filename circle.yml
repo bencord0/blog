@@ -1,0 +1,7 @@
+general:
+  artifacts:
+    - "dist"
+
+machine:
+  post:
+    - pyenv global 3.5.2
