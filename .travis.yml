@@ -7,11 +7,11 @@ env:
     - SEGFAULT_SIGNALS=all
   matrix:
     - TOXENV=py27
-    - TOXENV=py33
     - TOXENV=py34
     - TOXENV=py35
     - TOXENV=pypy
     - TOXENV=flake8
+    - TOXENV=coverage-report
 before_install:
   - python --version
   - uname -a
