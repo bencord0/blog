@@ -11,7 +11,6 @@ env:
     - TOXENV=py35
     - TOXENV=pypy
     - TOXENV=flake8
-    - TOXENV=coverage-report
 before_install:
   - python --version
   - uname -a
@@ -24,6 +23,8 @@ install:
   - tox --version
 script:
   - tox -v
+after_success:
+  - tox -e coverage-report
 after_failure:
   - more .tox/log/* | cat
   - more .tox/*/log/* | cat
