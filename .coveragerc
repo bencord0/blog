@@ -1,0 +1,14 @@
+[run]
+# Track code branches
+branch = True
+
+# What paths to cover
+source =
+  src/blog
+  tests
+
+[paths]
+# These paths are considered equivalent
+source =
+  src/blog
+  .tox/*/lib/python*/site-packages/blog

@@ -3,6 +3,7 @@ venv
 *.pex
 *.egg-info*
 
+.cache
 .coverage
 .tox
 
