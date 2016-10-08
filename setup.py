@@ -9,7 +9,7 @@ setup(
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[
-        "twisted",
+        "twisted>=16.4.0",
     ],
     entry_points={
         'console_scripts': [
