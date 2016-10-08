@@ -6,7 +6,7 @@ env:
     - LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
     - SEGFAULT_SIGNALS=all
   matrix:
-    - TOXENV=py35
+    - TOXENV=py35,coverage-report
     - TOXENV=flake8
 before_install:
   - python --version
@@ -20,8 +20,6 @@ install:
   - tox --version
 script:
   - tox -v
-after_success:
-  - tox -e coverage-report
 after_failure:
   - more .tox/log/* | cat
   - more .tox/*/log/* | cat
