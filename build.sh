@@ -10,5 +10,3 @@ source venv/bin/activate
 pip install -U pip tox
 
 tox
-
-pip install .
