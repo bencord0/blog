@@ -4,6 +4,10 @@ setup(
     name='blog',
     packages=find_packages(where="src"),
     package_dir={"": "src"},
+    package_data={"blog.core": [
+        "static/*/*",
+        "templates/*",
+    ]},
     install_requires=[
         'arrow',
         'Django',
