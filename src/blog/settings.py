@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'gunicorn',
+    'django_jinja',
 
     'blog.core',
 ]
@@ -51,12 +52,11 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 
-STATICFILES_DIRS = [
-    os.path.join(CUR_DIR, 'static'),
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
-TEMPLATES = [
-    {
+{
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
@@ -69,11 +69,13 @@ TEMPLATES = [
             ],
         },
     },
+TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': [os.path.join(CUR_DIR, 'templates')],
+        'BACKEND': 'django_jinja.backend.Jinja2',
+        'APP_DIRS': True,
+        'DIRS': [],
         'OPTIONS': {
-            'environment': 'blog.core.jinja2.environment',
+            'match_extension': '.j2',
         },
     },
 ]

@@ -8,6 +8,7 @@ setup(
         'arrow',
         'Django',
         'django-debug-toolbar',
+        'django-jinja',
         'djangorestframework',
         'dj-database-url',
         'dj-static',
