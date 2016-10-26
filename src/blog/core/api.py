@@ -29,4 +29,9 @@ def item(request, slug, item):
         raise Http404
 
 
+@api_view(['GET'])
+def index(request):
+    return Response({})
+
+
 slug = EntryResource.as_view()
