@@ -19,6 +19,7 @@ setup(
         'gunicorn',
         'jinja2',
         'markdown',
+        'psycopg2',
     ],
     entry_points={
         'console_scripts': [
