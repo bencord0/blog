@@ -8,4 +8,4 @@ fi
 
 source venv/bin/activate
 pip install --upgrade -r requirements.txt
-pex -vv -o blog.pex --disable-cache . -m blog
+pex -vv -o blog.pex --no-wheel --disable-cache . -m blog
