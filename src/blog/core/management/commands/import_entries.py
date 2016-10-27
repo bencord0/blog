@@ -30,7 +30,7 @@ def process_entry(path, data):
     entry.date = parse_date(data['date'])
     entry.title = data['title']
 
-    with open(join(path, 'markdown/{}.md'.format(data['slug']))) as md:
-        entry.md = md.read()
+    with open(join(path, 'markdown/{}.md'.format(data['slug'])), 'rb') as md:
+        entry.md = md.read().decode('utf-8')
 
     entry.save()

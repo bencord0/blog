@@ -15,7 +15,7 @@ if not SECRET_KEY:
         'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
     ) for i in range(50)])
 
-DEBUG = os.environ.get('DEBUG', 'True') in Truthy
+DEBUG = os.environ.get('DEBUG', 'False') in Truthy
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 PORT = int(os.environ.get('PORT', '8000'))
 
