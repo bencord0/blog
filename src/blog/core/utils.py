@@ -9,7 +9,7 @@ def get_all_entries():
     return Entry.objects.order_by('-date')
 
 
-def get_recent_entries(count=10):
+def get_recent_entries(count=20):
     return Entry.objects.order_by('-date')[:count]
 
 

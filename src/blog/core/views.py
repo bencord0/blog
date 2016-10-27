@@ -4,7 +4,7 @@ from .utils import get_all_entries, get_entry, get_recent_entries
 
 
 def index(request):
-    recent_entries = get_recent_entries(10)
+    recent_entries = get_recent_entries()
     context = {
         'recent_entries': recent_entries,
     }
@@ -13,7 +13,7 @@ def index(request):
 
 def slug(request, slug):
     entry = get_entry(slug)
-    recent_entries = get_recent_entries(10)
+    recent_entries = get_recent_entries()
     context = {
         'entry': entry,
         'html': entry.html,
@@ -23,7 +23,7 @@ def slug(request, slug):
 
 
 def about(request):
-    recent_entries = get_recent_entries(10)
+    recent_entries = get_recent_entries()
     context = {
         'recent_entries': recent_entries,
     }
