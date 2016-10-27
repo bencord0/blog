@@ -1,0 +1,16 @@
+{% extends "base.html.j2" %}
+{% block title %}Fragments | Archive{% endblock %}
+
+{% block nav %}
+    <ul class="navbar-nav nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+        <li class="active"><a href="/archive/">Archive</a></li>
+    </ul>
+{% endblock nav %}
+
+{% block content %}
+    {% for entry in all_entries %}
+        <h6><a href="/{{ entry.slug }}/">{{ entry.title }}</a></h6>
+    {% endfor %}
+{% endblock content %}

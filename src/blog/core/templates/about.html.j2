@@ -1,0 +1,19 @@
+{% extends "base.html.j2" %}
+{% block title %}Fragments | About{% endblock %}
+
+{% block nav %}
+    <ul class="navbar-nav nav">
+        <li><a href="/">Home</a></li>
+        <li class="active"><a href="/about/">About</a></li>
+        <li><a href="/archive/">Archive</a></li>
+    </ul>
+{% endblock nav %}
+
+{% block content %}
+    <h1>Ben Cordero</h1>
+    <p>A physics graduate from the University of Warwick, software testing engineer
+    and free software advocate.</p>
+    <p>Find me on <a href="https://twitter.com/bencord0">twitter</a>,
+    <a href="https://github.com/bencord0">github</a>
+    or contact me via <a href="mailto:blog@condi.me">email</a>.
+{% endblock content %}
