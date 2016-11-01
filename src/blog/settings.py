@@ -96,3 +96,5 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ],
 }
+
+WELLKNOWN_KEYBASE = os.getenv('WELLKNOWN_KEYBASE')
