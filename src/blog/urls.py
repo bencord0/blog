@@ -1,10 +1,11 @@
 from django.conf.urls import url
 
+import wellknown
+
 import blog.core.api
 import blog.core.feeds
 import blog.core.views
 
-import wellknown
 
 urlpatterns = [
     url(r'^$', blog.core.views.index, name='index'),
@@ -17,6 +18,7 @@ urlpatterns = [
         blog.core.api.item, name='api-item'),
     url(r'^api/(?P<slug>[a-z0-9-_]+)/$', blog.core.api.slug, name='api-slug'),
     url(r'^api/$', blog.core.api.index, name='api-index'),
-    url(r'^.well-known/keybase.txt$', wellknown.keybase, name='wellknown-keybase'),
+    url(r'^.well-known/keybase.txt$',
+        wellknown.keybase, name='wellknown-keybase'),
     url(r'^(?P<slug>[a-z0-9-_]+)/$', blog.core.views.slug, name='slug'),
 ]
