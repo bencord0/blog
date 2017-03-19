@@ -1,0 +1,3 @@
+rootProject.name = 'Fragments'
+
+include ':app'
