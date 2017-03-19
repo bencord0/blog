@@ -1,0 +1,29 @@
+Getting Started
+===============
+
+
+If you don't already have `react-natvie`:
+
+  $ npm install -g react-native-cli
+
+If you don't have the android sdk:
+
+  $ emerge android-studio
+
+Install the relavent SDK version for your device and set `ANDROID_HOME`.
+
+  $ export ANDROID_HOME=$HOME/Android/Sdk
+  $ export PATH=$PATH:$ANDROID_HOME/tools
+  $ export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+Grab the code and install application deps
+
+  $ npm install
+
+Plug in your phone (or use the device emulator), and run the app.
+
+  $ react-native run-android
+
+If you need logs, open another shell
+
+  $ react-native log-android
