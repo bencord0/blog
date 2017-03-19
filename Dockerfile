@@ -1,4 +1,4 @@
-FROM bencord0/python:3.5.2
+FROM bencord0/python:3.6
 
 ENV LD_LIBRARY_PATH=/usr/lib64/postgresql-9.5/lib64
 EXPOSE 8000

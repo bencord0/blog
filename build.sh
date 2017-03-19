@@ -3,7 +3,7 @@ set -xe
 
 if [ ! -d venv ]; then
   # Require any modern python implementation
-  python -m virtualenv venv
+  python -m venv venv
 fi
 
 source venv/bin/activate
