@@ -31,7 +31,8 @@ def item(request, slug, item):
 
 @api_view(['GET'])
 def index(request):
-    return Response({})
+    entries = Entry.objects.order_by('-date').values('slug', 'title', 'date')
+    return Response(entries)
 
 
 slug = EntryResource.as_view()
