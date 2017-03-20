@@ -1,4 +1,4 @@
-import Index from './src/containers/Index';
+import Fragments from './src';
 import {AppRegistry} from 'react-native';
 
-AppRegistry.registerComponent('Fragments', () => Index);
+AppRegistry.registerComponent('Fragments', () => Fragments);
