@@ -11,10 +11,18 @@ export default (state = initialState, action = {}) => {
     case types.API_FETCH_ROOT:
       return {
         ...state,
+        entries: action.entries,
       };
     case types.API_FETCH_SLUG:
       return {
         ...state,
+        currentEntry: action.entry,
+        showOverlay: true,
+      };
+    case types.API_HIDE_OVERLAY:
+      return {
+        ...state,
+        showOverlay: false,
       };
     default:
       return state;

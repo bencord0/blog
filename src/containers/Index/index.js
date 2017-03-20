@@ -5,35 +5,32 @@ import {
   ScrollView,
   View
 } from 'react-native';
+import {connect} from 'react-redux';
 
 import Overlay from '../../components/Overlay';
 import styles from '../../styles';
 
-export default class Index extends Component {
+import {listEntries, getEntry, hideOverlay} from '../../actions/apiActions';
+
+class Index extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      showOverlay: false,
-      entries: [],
-      currentEntry: {content: ""},
-    };
 
     this.showOverlay = this.showOverlay.bind(this);
+    this.fetchPosts = this.fetchPosts.bind(this);
   }
 
   componentDidMount() {
-    this.fetchPost();
+    this.fetchPosts();
   }
 
-  async fetchPost() {
+  async fetchPosts() {
     try {
       let response = await fetch('https://blog.condi.me/api/');
       let entries = await response.json();
 
-      this.setState({
-        entries: entries
-      });
+      this.props.onListEntries(entries);
 
     } catch(error) {
       console.log(error);
@@ -46,17 +43,15 @@ export default class Index extends Component {
       let req = await fetch(`https://blog.condi.me/api/${slug}/`);
       let entry = await req.json();
 
-      this.setState({
-        showOverlay: true,
-        currentEntry: entry
-      });
+      this.props.onGetEntry(entry.slug, entry)
     } catch(error) {
       console.log(error);
     }
   }
 
   render() {
-    let entries = this.state.entries.map(entry => {
+
+    let entries = this.props.entries.map(entry => {
       return (
         <Button
           key={entry.slug}
@@ -71,13 +66,13 @@ export default class Index extends Component {
         <ScrollView >
           {entries}
         </ScrollView>
-        <Overlay showOverlay={this.state.showOverlay}>
+        <Overlay showOverlay={this.props.showOverlay}>
           <ScrollView >
             <Text
               style={styles.entry}
-              onPress={() => this.setState({showOverlay: false})}
+              onPress={this.props.onHideOverlay}
             >
-              {this.state.currentEntry.content}
+              {this.props.currentEntry.content}
             </Text>
           </ScrollView>
         </Overlay>
@@ -85,3 +80,27 @@ export default class Index extends Component {
     );
   }
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    entries: state.entries,
+    showOverlay: state.showOverlay,
+    currentEntry: state.currentEntry,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onListEntries: (entries) => {
+      dispatch(listEntries(entries));
+    },
+    onGetEntry: (slug, entry) => {
+      dispatch(getEntry(slug, entry));
+    },
+    onHideOverlay: () => {
+      dispatch(hideOverlay());
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

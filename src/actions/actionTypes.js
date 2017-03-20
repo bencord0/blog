@@ -1,2 +1,3 @@
 export const API_FETCH_ROOT = 'API_FETCH_ROOT';
 export const API_FETCH_SLUG = 'API_FETCH_SLUG';
+export const API_HIDE_OVERLAY = 'API_HIDE_OVERLAY';
