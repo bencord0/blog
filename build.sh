@@ -7,7 +7,7 @@ if [ ! -d venv ]; then
 fi
 
 source venv/bin/activate
-pip install --upgrade -r requirements.txt
+pip install --upgrade -r build-requirements.txt
 pex -vv -o blog.pex --no-wheel --disable-cache . -m blog
 
 docker build -t bencord0/blog .
