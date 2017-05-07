@@ -1,0 +1,25 @@
+language: python
+python:
+  - '3.6'
+sudo: false
+env:
+  global:
+    - LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
+    - SEGFAULT_SIGNALS=all
+before_install:
+  - python --version
+  - uname -a
+  - lsb_release -a
+install:
+  - python setup.py install
+script:
+  - python setup.py test
+before_cache:
+  - rm -rf $HOME/.cache/pip/log
+cache:
+  directories:
+    - $HOME/.cache/pip
+notifications:
+  email:
+    on_success: never
+    on_failure: always

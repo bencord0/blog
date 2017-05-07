@@ -5,6 +5,7 @@ venv
 
 .cache
 .coverage
+.eggs
 .tox
 
 build

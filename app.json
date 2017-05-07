@@ -1,0 +1,10 @@
+{
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "python setup.py install",
+        "test": "python3.6 setup.py test"
+      }
+    }
+  }
+}

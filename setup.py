@@ -10,11 +10,14 @@ setup(
     ]},
     install_requires=[
         'klein',
+        'pyasn1',
         'treq',
-        'twisted',
+        'twisted[tls]',
     ],
-    test_require=[
-        'pytest',
+    setup_requires=[
+        'pytest-runner',
+    ],
+    tests_require=[
         'pytest-asyncio',
     ],
     entry_points={
@@ -22,4 +25,5 @@ setup(
             'blog = blog.__main__:main',
         ]
     },
+    zip_safe=False,
 )
