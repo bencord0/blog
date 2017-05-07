@@ -1,10 +1,11 @@
-from contextlib import closing
-from psycopg2cffi import OperationalError
-from txpostgres import txpostgres
-
 import attr
 
+from psycopg2cffi import OperationalError
+
+from txpostgres import txpostgres
+
 from blog import settings
+
 
 class PG(object):
     def __init__(self):
@@ -19,7 +20,10 @@ class PG(object):
             return []
 
         return await self._conn.runQuery(querystring, params=params)
+
+
 pg = PG()
+
 
 @attr.s
 class Entry(object):

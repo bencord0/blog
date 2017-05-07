@@ -2,8 +2,8 @@
   "environments": {
     "test": {
       "scripts": {
-        "test-setup": "python setup.py install",
-        "test": "python3.6 setup.py test"
+        "test-setup": "pip install .[lint]",
+        "test": "python3.6 setup.py test && flake8 setup.py src tests"
       }
     }
   }

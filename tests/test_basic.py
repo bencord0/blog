@@ -1,7 +1,8 @@
 import asyncio
+
 import pytest
 
-from twisted.internet.defer import succeed
+from twisted.internet.defer import fail, succeed
 
 
 # This is what a normal pytest check looks like
@@ -39,3 +40,38 @@ def test_yield_from():
         return val
 
     assert (yield from _succeed(True))
+
+
+def test_fail():
+    try:
+        1 / 0
+    except ZeroDivisionError as e:
+        d = fail(e)
+
+    assert isinstance(d.result.value, ZeroDivisionError)
+
+    try:
+        1 / 0
+    except ZeroDivisionError as e:
+        ee = e
+
+    assert isinstance(ee, ZeroDivisionError)
+
+
+@pytest.mark.asyncio
+async def test_async_fail():
+
+    def _fail():
+        try:
+            1 / 0
+        except ZeroDivisionError as e:
+            return fail(e)
+
+    with pytest.raises(ZeroDivisionError):
+        await _fail()
+
+    async def _fail_again():
+        1 / 0
+
+    with pytest.raises(ZeroDivisionError):
+        await _fail_again()

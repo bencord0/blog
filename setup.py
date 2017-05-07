@@ -23,6 +23,13 @@ setup(
     tests_require=[
         'pytest-asyncio',
     ],
+    extras_require={
+        'lint': [
+            'flake8',
+            'flake8-bugbear',
+            'flake8-import-order',
+        ],
+    },
     entry_points={
         'console_scripts': [
             'blog = blog.__main__:main',

@@ -7,7 +7,7 @@ async def test_index(treq):
     assert response.code == 200
 
     content = await response.content()
-    assert  content == b'Hello World!\n'
+    assert content == b'Hello World!\n'
 
 
 @pytest.mark.asyncio

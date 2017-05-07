@@ -11,9 +11,11 @@ before_install:
   - uname -a
   - lsb_release -a
 install:
+  - pip install .[lint]
   - python setup.py install
 script:
   - python setup.py test
+  - flake8 setup.py src tests
 before_cache:
   - rm -rf $HOME/.cache/pip/log
 cache:
