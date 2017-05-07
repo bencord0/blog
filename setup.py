@@ -9,10 +9,13 @@ setup(
         "templates/*",
     ]},
     install_requires=[
+        'attrs',
         'klein',
+        'psycopg2cffi',
         'pyasn1',
         'treq',
         'twisted[tls]',
+        'txpostgres',
     ],
     setup_requires=[
         'pytest-runner',
