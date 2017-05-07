@@ -5,6 +5,19 @@ import attr
 
 from blog import settings
 
+class PG(object):
+    def __init__(self):
+        self._conn = txpostgres.Connection()
+
+    async def query(self, querystring, params):
+        try:
+            await self._conn.connect(settings.DATABASE_URL)
+        except txpostgres.AlreadyConnected:
+            pass
+
+        return await self._conn.runQuery(querystring, params=params)
+pg = PG()
+
 @attr.s
 class Entry(object):
     slug = attr.ib()
@@ -14,16 +27,15 @@ class Entry(object):
 
     @classmethod
     async def get(cls, slug):
-        query = r"""
-            SELECT slug,title,date,md
-            FROM core_entry
-            WHERE slug = %(slug)s
-            LIMIT 1;
-        """
-        
-        with closing(txpostgres.Connection()) as conn:
-            await conn.connect(settings.DATABASE_URL)
-            queryset = await conn.runQuery(query, params={"slug": slug})
+        queryset = await pg.query(
+            r"""
+                SELECT slug,title,date,md
+                FROM core_entry
+                WHERE slug = %(slug)s
+                LIMIT 1;
+            """,
+            params={"slug": slug}
+        )
 
         if queryset:
             return cls(*queryset[0])
