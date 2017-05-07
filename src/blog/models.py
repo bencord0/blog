@@ -1,4 +1,5 @@
 from contextlib import closing
+from psycopg2cffi import OperationalError
 from txpostgres import txpostgres
 
 import attr
@@ -14,6 +15,8 @@ class PG(object):
             await self._conn.connect(settings.DATABASE_URL)
         except txpostgres.AlreadyConnected:
             pass
+        except OperationalError:
+            return []
 
         return await self._conn.runQuery(querystring, params=params)
 pg = PG()
