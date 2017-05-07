@@ -1,0 +1,17 @@
+venv
+*.py[cdo]
+*.pex
+*.egg-info*
+
+.cache
+.coverage
+.tox
+
+build
+db.sqlite3
+dist
+staticfiles
+target
+docker*
+
+_trial_temp
