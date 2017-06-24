@@ -1,6 +1,7 @@
 venv
 *.py[cdo]
 *.pex
+*.eggs
 *.egg-info*
 
 .cache
