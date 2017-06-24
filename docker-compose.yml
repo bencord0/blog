@@ -1,0 +1,12 @@
+blog:
+  image: bencord0/blog
+  links:
+    - db:postgres
+  environment:
+    ALLOWED_HOSTS: "*"
+    DATABASE_URL: "postgres://postgres@postgres/postgres"
+  ports:
+    - "8000:8000"
+
+db:
+  image: postgres
