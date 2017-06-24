@@ -34,6 +34,7 @@ class Entry(object):
 
     @classmethod
     async def get(cls, slug):
+        assert isinstance(slug, str)
         queryset = await pg.query(
             r"""
                 SELECT slug,title,date,md
@@ -41,7 +42,7 @@ class Entry(object):
                 WHERE slug = %(slug)s
                 LIMIT 1;
             """,
-            params={"slug": slug}
+            {"slug": slug}
         )
 
         if queryset:
