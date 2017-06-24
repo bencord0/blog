@@ -1,0 +1,9 @@
+blog:
+  build: .
+  links:
+    - db
+  environment:
+    DATABASE_URL: postgres://postgres@db/postgres
+
+db:
+  image: postgres

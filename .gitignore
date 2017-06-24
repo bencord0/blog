@@ -13,6 +13,6 @@ db.sqlite3
 dist
 staticfiles
 target
-docker*
+docker/*
 
 _trial_temp
