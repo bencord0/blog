@@ -11,25 +11,35 @@ Getting started
   $ git clone https://github.com/bencord0/blog -b python-django
   $ git clone https://github.com/bencord0/blogposts
 
-  $ (cd blog; ./build.sh)
+You will need access to a postgres instance. Set DATABASE_URL accordingly.
+Alternatively, use the Docker instructions below.
+
+  $ (cd blog; make pex)
   $ ./blog/blog.pex manage migrate
   $ ./blog/blog.pex manage import_entries blogposts
-  $ (cd blogposts; ./blog/blog.pex)
+  $ (cd blogposts; ../blog/blog.pex)
 
 2/. Report inconsistencies with the live site, and make suggestions.
 
 Docker
 ------
 
-  $ ./build.sh
-  $ docker build -t bencord0/blog .
+  $ make docker
+  $ make run
 
-  $ PGPASS=$(uuidgen)
-  $ docker run --name blog-db -e POSTGRES_PASSWORD=$PGPASS -d postgres
-  $ DOCKER_RUN_PREFIX="docker run --name blog --link blog-db:postgres --rm -p 80:8000 \
-    -e DATABASE_URL=postgres://postgres:$PGPASS@postgres/postgres "
+Running Tests
+-------------
 
-  $ $DOCKER_RUN_PREFIX bencord0/blog manage migrate
-  $ $DOCKER_RUN_PREFIX -v $(pwd)/blogposts:/blogposts bencord0/blog manage import_entries ./blogposts
-  $ $DOCKER_RUN_PREFIX bencord0/blog
+Invoke `tox` without arguments.
+        This runs the full test suite against python2 and python3,
+        the flake8 linter and produces a coverage report.
+        This form is useful in CI environments.
 
+Or `make test`.
+        This runs the full test suite using the current environment.
+        You may need to `pip install -r test-requirements.txt first.
+        This is intended to run in an existing environment.
+
+Finally `make coverage`.
+        Like `make test` this will run the full test suite, but
+        will also produce a coverage report at the end.
