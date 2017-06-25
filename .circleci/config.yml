@@ -7,6 +7,9 @@ jobs:
     machine: true
     steps:
       - checkout
+
+      # When the provided docker version contains multistage docker support
+      # These stanzas and and `machine: true` may be removed.
       - run: docker version
       - run:
           name: Disable host docker
@@ -17,6 +20,9 @@ jobs:
           command: |
             curl -fsSL https://get.docker.com/ | sudo sh
       - run: docker version
+
+      # Install additional python versions
+      - run: circleci-install python 3.6.1
 
       - restore_cache:
           keys:
