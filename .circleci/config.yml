@@ -39,25 +39,29 @@ jobs:
           command: pip install -r test-requirements.txt
 
       # The tests!
-      - run: tox
-        environment:
-          TOXENV=py27
+      - run:
+          name: Python2.7 tests
+          command: tox
+          environment:
+            TOXENV: py27
 
-      - run: tox
-        environment:
-          TOXENV=py36
+      - run:
+          name: Python3.6 tests
+          command: tox
+          environment:
+            TOXENV: py36
 
       - run:
           name: lint
           command: tox
-        environment:
-          TOXENV=flake8
+          environment:
+            TOXENV: flake8
 
       - run:
           name: coverage
           command: tox
-        environment:
-          TOXENV=coverage-report
+          environment:
+            TOXENV: coverage-report
 
       - run:
           name: Save docker image layer cache
