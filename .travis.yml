@@ -10,7 +10,7 @@ before_install:
   - uname -a
   - lsb_release -a
 install:
-  - pip install tox
+  - pip install -r test-requirements.txt
   - virtualenv --version
   - easy_install --version
   - pip --version
