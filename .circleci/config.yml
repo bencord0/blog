@@ -21,8 +21,11 @@ jobs:
             curl -fsSL https://get.docker.com/ | sudo sh
       - run: docker version
 
-      # Install additional python versions
-      - run: circleci-install python 3.6.1
+      - run:
+          name: Install additional python versions
+          command: |
+            pyenv install 2.7.13
+            pyenv install 3.6.1
 
       - restore_cache:
           keys:
@@ -34,26 +37,27 @@ jobs:
           command: |
             docker load -i ~/caches/docker.tar || true
 
-
       - run:
           name: Build docker image
           command: |
             docker build --cache-from=bencord0/blog -t bencord0/blog .
 
-      - run:
-          name: Install test dependencies
-          command: pip install -r test-requirements.txt
-
       # The tests!
       - run:
           name: Python2.7 tests
-          command: tox
+          command: |
+            pyenv local 2.7.13
+            pip install -r test-requirements.txt
+            tox
           environment:
             TOXENV: py27
 
       - run:
           name: Python3.6 tests
-          command: tox
+          command: |
+            pyenv local 3.6.1
+            pip install -r test-requirements.txt
+            tox
           environment:
             TOXENV: py36
 
