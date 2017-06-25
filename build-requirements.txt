@@ -1,3 +1,2 @@
 pex
-tox
 wheel

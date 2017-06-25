@@ -1,2 +1,5 @@
+import blog
+
+
 def test_basic():
-    pass
+    blog.settings
