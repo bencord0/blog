@@ -1,0 +1,46 @@
+# https://circleci.com/blog/how-to-build-a-docker-image-on-circleci-2-0/
+# https://discuss.circleci.com/t/multi-stage-docker/12386/4
+version: 2
+jobs:
+  build:
+    working_directory: ~/app
+    machine: true
+    steps:
+      - checkout
+      - run: docker version
+      - run:
+          name: Disable host docker
+          command: |
+            sudo service docker stop
+      - run:
+          name: Install latest docker
+          command: |
+            curl -fsSL https://get.docker.com/ | sudo sh
+      - run: docker version
+
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - ~/caches/docker.tar
+      - run:
+          name: Load docker image layer cache
+          command: |
+            docker load -i ~/caches/docker.tar || true
+
+
+      - run:
+          name: Build docker image
+          command: |
+            docker build --cache-from=bencord0/blog -t bencord0/blog .
+
+
+      - run:
+          name: Save docker image layer cache
+          command: |
+            mkdir -p ~/caches
+            docker save -o ~/caches/docker.tar bencord0/blog
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
+            - ~/caches/docker.tar
