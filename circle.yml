@@ -1,11 +1,8 @@
-general:
-  artifacts:
-    - "blog.pex"
-
 machine:
-  post:
-    - pyenv global 3.6.1
+  services:
+    - docker
 
-test:
-  post:
-    - pex -vv -o blog.pex --disable-cache . -m blog
+dependencies:
+  override:
+    - docker info
+    - docker build --rm=false -t bencord0/blog .
