@@ -3,7 +3,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /app
+    working_directory: ~/app
     machine: true
     steps:
       - checkout
