@@ -22,11 +22,11 @@ jobs:
           keys:
             - v1-{{ .Branch }}
           paths:
-            - /caches/docker.tar
+            - ~/caches/docker.tar
       - run:
           name: Load docker image layer cache
           command: |
-            docker load -i /caches/docker.tar || true
+            docker load -i ~/caches/docker.tar || true
 
 
       - run:
@@ -38,9 +38,9 @@ jobs:
       - run:
           name: Save docker image layer cache
           command: |
-            mkdir -p /caches
-            docker save -o /caches/docker.tar
+            mkdir -p ~/caches
+            docker save -o ~/caches/docker.tar bencord0/blog
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
-            - /caches/docker.tar
+            - ~/caches/docker.tar
