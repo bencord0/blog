@@ -3,29 +3,17 @@
 version: 2
 jobs:
   build:
+
+    docker:
+      - image: circleci/python:3.6.1
+
     working_directory: ~/app
-    machine: true
     steps:
       - checkout
 
-      # When the provided docker version contains multistage docker support
-      # These stanzas and and `machine: true` may be removed.
-      - run: docker version
-      - run:
-          name: Disable host docker
-          command: |
-            sudo service docker stop
-      - run:
-          name: Install latest docker
-          command: |
-            curl -fsSL https://get.docker.com/ | sudo sh
-      - run: docker version
-
-      - run:
-          name: Install additional python versions
-          command: |
-            pyenv install 2.7.13
-            pyenv install 3.6.1
+      # Remove this stanza when the default version of docker supports multi-stage builds
+      - setup_remote_docker:
+          version: 17.06.0-ce
 
       - restore_cache:
           keys:
@@ -43,20 +31,12 @@ jobs:
             docker build --cache-from=bencord0/blog -t bencord0/blog .
 
       # The tests!
-      - run:
-          name: Python2.7 tests
-          command: |
-            pyenv local 2.7.13
-            pip install -r test-requirements.txt
-            tox
-          environment:
-            TOXENV: py27
+      - run: echo 'export PATH=~/.local/bin:$PATH' >> $BASH_ENV
 
       - run:
-          name: Python3.6 tests
+          name: tests
           command: |
-            pyenv local 3.6.1
-            pip install -r test-requirements.txt
+            pip install --user -r test-requirements.txt
             tox
           environment:
             TOXENV: py36
