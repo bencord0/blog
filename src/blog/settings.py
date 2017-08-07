@@ -4,6 +4,8 @@ import os
 
 import dj_database_url
 
+import raven
+
 Truthy = ['True', 'true', '1', 'yes', 'y']
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CUR_DIR = os.path.abspath(os.curdir)
@@ -28,6 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'django_jinja',
+
+    'raven.contrib.django.raven_compat',
 
     'blog.core',
 ]
@@ -97,3 +101,7 @@ REST_FRAMEWORK = {
 }
 
 WELLKNOWN_KEYBASE = os.getenv('WELLKNOWN_KEYBASE')
+
+RAVEN_CONFIG = {
+    'dsn': os.getenv('SENTRY_DNS', ''),
+}

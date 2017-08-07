@@ -20,6 +20,7 @@ setup(
         'jinja2',
         'markdown',
         'psycopg2cffi',
+        'raven',
     ],
     entry_points={
         'console_scripts': [
