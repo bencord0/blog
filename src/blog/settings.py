@@ -4,8 +4,6 @@ import os
 
 import dj_database_url
 
-import raven
-
 Truthy = ['True', 'true', '1', 'yes', 'y']
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CUR_DIR = os.path.abspath(os.curdir)
@@ -59,19 +57,6 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
-{
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
 TEMPLATES = [
     {
         'BACKEND': 'django_jinja.backend.Jinja2',
