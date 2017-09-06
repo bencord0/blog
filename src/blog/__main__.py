@@ -1,8 +1,11 @@
 import os
 import sys
 
-from psycopg2cffi import compat
-compat.register()
+try:
+    from psycopg2cffi import compat
+    compat.register()
+except ImportError:
+    pass
 
 
 def main():
