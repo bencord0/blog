@@ -1,4 +1,6 @@
-from django.conf.urls import url
+from django.conf.urls import handler404, url
+from django.utils.functional import curry
+from django.views.defaults import page_not_found
 
 import wellknown
 
@@ -22,3 +24,5 @@ urlpatterns = [
         wellknown.keybase, name='wellknown-keybase'),
     url(r'^(?P<slug>[a-z0-9-_]+)/$', blog.core.views.slug, name='slug'),
 ]
+
+handler404 = curry(page_not_found, template_name='404.html.j2')  # noqa: F811

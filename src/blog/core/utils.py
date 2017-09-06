@@ -2,6 +2,8 @@ import datetime
 
 from dateutil.parser import parse as _parse_date
 
+from django.shortcuts import get_object_or_404
+
 from blog.core.models import Entry
 
 
@@ -14,7 +16,7 @@ def get_recent_entries(count=20):
 
 
 def get_entry(slug):
-    return Entry.objects.get(slug=slug)
+    return get_object_or_404(Entry, slug=slug)
 
 
 class UTC(datetime.tzinfo):
