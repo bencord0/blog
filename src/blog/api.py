@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from blog.core.models import Entry
+from .models import Entry
 
 
 class EntryResource(APIView):

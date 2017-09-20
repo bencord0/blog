@@ -2,7 +2,7 @@ from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
 from django.utils.feedgenerator import Atom1Feed
 
-from blog.core.models import Entry
+from .models import Entry
 
 
 class RssBlogFeed(Feed):

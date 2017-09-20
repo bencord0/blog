@@ -5,8 +5,8 @@ from os.path import abspath, join
 
 from django.core.management.base import BaseCommand
 
-from blog.core.models import Entry
-from blog.core.utils import parse_date
+from blog.models import Entry
+from blog.utils import parse_date
 
 
 class Command(BaseCommand):

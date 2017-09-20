@@ -9,7 +9,7 @@ except ImportError:
 
 
 def main():
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "blog.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
     from django.core.management import execute_from_command_line
     from gunicorn.app.wsgiapp import run
 
@@ -17,7 +17,7 @@ def main():
         execute_from_command_line(sys.argv[1:])
     else:
         # Run the webserver
-        sys.argv = [sys.argv[0], 'blog.wsgi:application'] + sys.argv[1:]
+        sys.argv = [sys.argv[0], 'config.wsgi:application'] + sys.argv[1:]
         print(sys.argv)
         sys.exit(run())
 

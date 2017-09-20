@@ -31,7 +31,7 @@ INSTALLED_APPS = [
 
     'raven.contrib.django.raven_compat',
 
-    'blog.core',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +49,7 @@ MIDDLEWARE = [
 ]
 
 WSGI_APPLICATION = 'blog.wsgi.application'
-ROOT_URLCONF = 'blog.urls'
+ROOT_URLCONF = 'config.urls'
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 MEDIA_ROOT = 'media'

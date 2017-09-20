@@ -4,7 +4,7 @@ setup(
     name='blog',
     packages=find_packages(where="src"),
     package_dir={"": "src"},
-    package_data={"blog.core": [
+    package_data={"blog": [
         "static/*/*",
         "templates/*",
     ]},
@@ -24,7 +24,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'blog = blog.__main__:main',
+            'blog = config.__main__:main',
         ]
     },
 )
