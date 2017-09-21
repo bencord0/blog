@@ -9,7 +9,7 @@ RUN pip wheel -r /app/requirements.txt
 
 COPY setup.py /app
 COPY setup.cfg /app
-COPY src /app/
+COPY src /app/src
 RUN pip wheel /app
 
 FROM python:3.6.2
