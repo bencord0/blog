@@ -1,24 +1,27 @@
-FROM python:3.6.2 as builder
+FROM python:3.6.3 as builder
+WORKDIR /app/
 
-ENV WHEELHOUSE=/wheelhouse
-ENV PIP_WHEEL_DIR=/wheelhouse
-ENV PIP_FIND_LINKS=/wheelhouse
+COPY Pipfile /app/
+COPY Pipfile.lock /app/
 
-COPY requirements.txt /app/requirements.txt
-RUN pip wheel -r /app/requirements.txt
+RUN pip install pipenv && pipenv install --deploy
 
-COPY setup.py /app
-COPY setup.cfg /app
-COPY src /app/src
-RUN pip wheel /app
+COPY setup.py /app/
+COPY setup.cfg /app/
+COPY src /app/src/
 
-FROM python:3.6.2
+RUN python ./setup.py bdist_wheel && pipenv run pip install ./dist/*
 
-VOLUME /wheelhouse
-COPY --from=builder /wheelhouse /wheelhouse
+FROM python:3.6.3
+WORKDIR /app/
 
-RUN pip install --no-index -f /wheelhouse blog
-RUN /usr/local/bin/blog manage collectstatic --noinput
+COPY --from=builder /app/Pipfile /app/
+COPY --from=builder /app/Pipfile.lock /app/
+COPY --from=builder /root/.cache /root/.cache
+COPY --from=builder /root/.local /root/.local
+COPY --from=builder /root/.virtualenvs /root/.virtualenvs
+RUN pip install pipenv
 
-ENTRYPOINT ["/usr/local/bin/blog"]
-CMD ["-b", "0.0.0.0:8000"]
+RUN pipenv run blog manage collectstatic --noinput
+
+CMD ["pipenv", "run", "blog", "-b", "0.0.0.0:8000"]
