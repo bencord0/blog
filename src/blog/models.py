@@ -1,6 +1,6 @@
 import arrow
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 
 from markdown import Markdown
