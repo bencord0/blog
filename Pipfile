@@ -1,0 +1,26 @@
+[[source]]
+
+verify_ssl = true
+name = "pypi"
+url = "https://pypi.python.org/simple"
+
+
+[packages]
+
+arrow = "*"
+dj-database-url = "*"
+dj-static = "*"
+django = "*"
+django-debug-toolbar = "*"
+django-jinja = "*"
+djangorestframework = "*"
+gunicorn = "*"
+markdown = "*"
+"psycopg2cffi" = "*"
+raven = "*"
+
+
+[dev-packages]
+
+pytest = "*"
+coverage = "*"

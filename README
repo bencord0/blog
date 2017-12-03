@@ -12,20 +12,23 @@ Getting started
   $ git clone https://github.com/bencord0/blogposts
 
 You will need access to a postgres instance. Set DATABASE_URL accordingly.
-Alternatively, use the Docker instructions below.
 
-  $ (cd blog; make pex)
-  $ ./blog/blog.pex manage migrate
-  $ ./blog/blog.pex manage import_entries blogposts
-  $ (cd blogposts; ../blog/blog.pex)
+  $ cd blog
+  $ pipenv install
+  $ pipenv run pip install -e .
+  $ pipenv run blog manage migrate
+  $ pipenv run blog manage collectstatic
+  $ pipenv run blog manage import_entries ../blogposts
+
+  $ pipenv run blog -b 0.0.0.0:8000
 
 2/. Report inconsistencies with the live site, and make suggestions.
 
 Docker
 ------
 
-  $ make docker
-  $ make run
+  $ docker-compose build
+  $ docker-compose up
 
 Running Tests
 -------------
