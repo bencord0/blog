@@ -41,6 +41,7 @@ class Entry(models.Model):
             'md_url': reverse('md-slug', kwargs={'slug': self.slug}),
             'slug': self.slug,
             'summary': self.summary,
+            'title': self.title,
         }
 
     def get_absolute_url(self):
