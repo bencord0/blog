@@ -15,7 +15,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 class App_ extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Navigation/>
         <Grid>
           <Row>
@@ -33,7 +33,7 @@ class App_ extends Component {
             </Col>
           </Row>
         </Grid>
-     </div>
+     </React.Fragment>
     );
   }
 }

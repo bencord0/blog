@@ -57,21 +57,21 @@ class Entry_ extends Component {
 
     if (entry) {
       return (
-        <div>
+        <React.Fragment>
           <h2><Link to={entry.html_url}>{entry.title}</Link></h2>
           <h6>posted {entry.fuzzy_date} by <Link to="/about/">Ben Cordero</Link></h6>
           <div dangerouslySetInnerHTML={ this.renderHtmlForSlug(slug) }/>
-        </div>
+        </React.Fragment>
       );
 
    }
 
    return (
-     <div>
+     <React.Fragment>
        <h2>Loading ...</h2>
        <h6>fetching post...</h6>
        <div/>
-     </div>
+     </React.Fragment>
    );
   }
 }

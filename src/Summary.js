@@ -39,14 +39,14 @@ class Summary extends Component {
     console.log(`Summary: render ${title}`);
 
     return (
-      <div>
+      <React.Fragment>
         <h2><Link to={html_url}>{title}</Link></h2>
         <h6>posted {fuzzy_date} by <Link to="/about/">Ben Cordero</Link>.</h6>
         <div dangerouslySetInnerHTML={ {__html: summary} }/>
         <div>
           <p><Link to={html_url}>Read more</Link></p>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
