@@ -1,21 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { withRouter } from 'react-router-dom';
 
-class App extends Component {
+import Navigation from './Navigation';
+import Home from './Home';
+import Entry from './Entry';
+import About from './About';
+import Archive from './Archive';
+import RecentPosts from './RecentPosts';
+import Feeds from './Feeds';
+
+import { Col, Grid, Row } from 'react-bootstrap';
+import { Route, Switch } from 'react-router-dom';
+
+class App_ extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <div>
+        <Navigation/>
+        <Grid>
+          <Row>
+            <Col xs={8}>
+              <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/about/" component={About}/>
+                <Route path="/archive/" component={Archive}/>
+                <Route path="/:slug/" component={Entry}/>
+              </Switch>
+            </Col>
+            <Col xs={4}>
+              <RecentPosts/>
+              <Feeds/>
+            </Col>
+          </Row>
+        </Grid>
+     </div>
     );
   }
 }
 
+const App = withRouter(App_);
 export default App;
