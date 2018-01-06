@@ -10,7 +10,7 @@ import RecentPosts from './RecentPosts';
 import Feeds from './Feeds';
 
 import { Col, Grid, Row } from 'react-bootstrap';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 class App_ extends Component {
   render() {
@@ -38,5 +38,9 @@ class App_ extends Component {
   }
 }
 
-const App = withRouter(App_);
+const App = () => (
+  <BrowserRouter>
+    <App_/>
+  </BrowserRouter>
+);
 export default App;
