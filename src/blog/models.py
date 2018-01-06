@@ -1,7 +1,7 @@
 import arrow
 
-from django.urls import reverse
 from django.db import models
+from django.urls import reverse
 
 from markdown import Markdown
 

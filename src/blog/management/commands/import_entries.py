@@ -1,5 +1,4 @@
 import json
-
 from glob import glob
 from os.path import abspath, join
 
