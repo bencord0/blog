@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+
+    docker:
+      - image: circleci/node
+
+    working_directory: ~/app
+    steps:
+      - checkout
+
+      - run: npm run test
+
+      - run:
+          name: Build docker image
+          command: |
+            docker build -t bencord0/blog:react .
