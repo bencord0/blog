@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 
 class Entry_ extends Component {
   constructor(props) {
     super(props);
     console.log("Entry: constructor");
 
-    this.state = {}
+    this.state = {};
   }
 
   componentDidMount() {
@@ -30,12 +30,12 @@ class Entry_ extends Component {
           let update = {};
           update[slug] = res;
           this.setState(update);
-        })
+        });
     }
   }
 
   componentWillUnmount() {
-    console.log("Entry: componentWillUnmount")
+    console.log("Entry: componentWillUnmount");
   }
 
   renderHtmlForSlug(slug) {
@@ -64,15 +64,15 @@ class Entry_ extends Component {
         </React.Fragment>
       );
 
-   }
+    }
 
-   return (
-     <React.Fragment>
-       <h2>Loading ...</h2>
-       <h6>fetching post...</h6>
-       <div/>
-     </React.Fragment>
-   );
+    return (
+      <React.Fragment>
+        <h2>Loading ...</h2>
+        <h6>fetching post...</h6>
+        <div/>
+      </React.Fragment>
+    );
   }
 }
 

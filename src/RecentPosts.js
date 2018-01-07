@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class RecentPosts extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class RecentPosts extends Component {
       .then(res => res.json())
       .then(res => this.setState({
         content: res.slice(0, 20)
-      }))
+      }));
   }
 
   render() {

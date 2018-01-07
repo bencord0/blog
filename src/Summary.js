@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Summary extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class Summary extends Component {
 
     this.state = {
       entry: {}
-    }
+    };
   }
 
   componentDidMount() {
@@ -22,7 +22,7 @@ class Summary extends Component {
       console.log(`Summary: fetching ${slug}`);
       fetch(`https://blog.condi.me/api/${slug}/`)
         .then(res => res.json())
-        .then(res => setTimeout(() =>    this.setState({entry: res})    , 5000))
+        .then(res => this.setState({entry: res}));
     }
   }
 
@@ -32,9 +32,9 @@ class Summary extends Component {
     let fuzzy_date = date;
     let summary = "";
     if ("summary" in this.state.entry) {
-       html_url = this.state.entry.html_url;
-       fuzzy_date = this.state.entry.fuzzy_date;
-       summary = this.state.entry.summary;
+      html_url = this.state.entry.html_url;
+      fuzzy_date = this.state.entry.fuzzy_date;
+      summary = this.state.entry.summary;
     }
     console.log(`Summary: render ${title}`);
 

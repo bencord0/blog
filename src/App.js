@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from "react";
 
-import Navigation from './Navigation';
-import Home from './Home';
-import Entry from './Entry';
-import About from './About';
-import Archive from './Archive';
-import RecentPosts from './RecentPosts';
-import Feeds from './Feeds';
+import Navigation from "./Navigation";
+import Home from "./Home";
+import Entry from "./Entry";
+import About from "./About";
+import Archive from "./Archive";
+import RecentPosts from "./RecentPosts";
+import Feeds from "./Feeds";
 
-import { Col, Grid, Row } from 'react-bootstrap';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Col, Grid, Row } from "react-bootstrap";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 class App_ extends Component {
   render() {
@@ -33,7 +32,7 @@ class App_ extends Component {
             </Col>
           </Row>
         </Grid>
-     </React.Fragment>
+      </React.Fragment>
     );
   }
 }

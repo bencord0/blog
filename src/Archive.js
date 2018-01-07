@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Archive extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class Archive extends Component {
 
     this.state = {
       content: []
-    }
+    };
   }
 
   componentDidMount() {
@@ -22,19 +22,19 @@ class Archive extends Component {
       .then(res => res.json())
       .then(res => this.setState({
         content: res
-      }))
+      }));
   }
 
   render() {
     return (
       <React.Fragment>
-      {this.state.content.map(
-        (entry, index) => {
-          return (
-            <h6 key={index}><Link to={`/${entry.slug}/`}>{entry.title}</Link></h6>
-          );
-        }
-      )}
+        {this.state.content.map(
+          (entry, index) => {
+            return (
+              <h6 key={index}><Link to={`/${entry.slug}/`}>{entry.title}</Link></h6>
+            );
+          }
+        )}
       </React.Fragment>
     );
   }

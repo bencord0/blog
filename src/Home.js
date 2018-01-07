@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import Summary from './Summary';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import Summary from "./Summary";
 
 class Home_ extends Component {
   constructor(props) {
@@ -28,11 +28,11 @@ class Home_ extends Component {
       .then(res => res.json())
       .then(res => this.setState({
         content: res.slice(0, 20)
-      }))
+      }));
   }
 
   componentWillUnmount() {
-    console.log("Home: componentWillUnmount")
+    console.log("Home: componentWillUnmount");
   }
 
   shouldcomponentUpdate(nextProps, nextState) {
