@@ -11,7 +11,7 @@ import Feeds from "./Feeds";
 import { Col, Grid, Row } from "react-bootstrap";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-class App_ extends Component {
+class AppX extends Component {
   render() {
     return (
       <React.Fragment>
@@ -39,7 +39,7 @@ class App_ extends Component {
 
 const App = () => (
   <BrowserRouter>
-    <App_/>
+    <AppX/>
   </BrowserRouter>
 );
 export default App;
