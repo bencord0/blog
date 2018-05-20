@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators import cache
 
@@ -43,3 +44,7 @@ def archive(request):
         'all_entries': all_entries,
     }
     return render(request, 'archive.html.j2', context)
+
+
+def health(request):
+    return HttpResponse('') 

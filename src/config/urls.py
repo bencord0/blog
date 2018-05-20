@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^$', blog.views.index, name='index'),
     url(r'^about/$', blog.views.about, name='about'),
     url(r'^archive/$', blog.views.archive, name='archive'),
+    url(r'^health$', blog.views.health, name='health'),
     url(r'^feeds/atom/$', blog.feeds.atom, name='atom'),
     url(r'^feeds/rss/$', blog.feeds.rss, name='rss'),
     url(r'^api/md/(?P<slug>[a-z0-9-_]+)/$', blog.api.md, name='md-slug'),
