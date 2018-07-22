@@ -89,5 +89,5 @@ REST_FRAMEWORK = {
 WELLKNOWN_KEYBASE = os.getenv('WELLKNOWN_KEYBASE')
 
 RAVEN_CONFIG = {
-    'dsn': os.getenv('SENTRY_DNS', ''),
+    'dsn': os.getenv('SENTRY_DSN', ''),
 }
