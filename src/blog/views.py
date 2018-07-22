@@ -47,4 +47,4 @@ def archive(request):
 
 
 def health(request):
-    return HttpResponse('') 
+    return HttpResponse('')
