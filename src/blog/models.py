@@ -45,4 +45,4 @@ class Entry(models.Model):
         }
 
     def get_absolute_url(self):
-        return reverse('slug', kwargs={'slug': self.slug}),
+        return reverse('slug', kwargs={'slug': self.slug})
