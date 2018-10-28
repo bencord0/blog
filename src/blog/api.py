@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404
 
 from rest_framework.decorators import api_view
@@ -19,11 +19,12 @@ class EntryResource(APIView):
 
 def md(request, slug):
     entry = get_object_or_404(Entry, slug=slug)
-    return Response(
+    response = HttpResponse(
         entry.md,
-        headers={'Access-Control-Allow-Origin': '*'},
         content_type='text/x-markdown; charset=UTF-8',
     )
+    response.setdefault('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @api_view(['GET'])
