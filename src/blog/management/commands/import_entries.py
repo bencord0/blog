@@ -18,18 +18,18 @@ class Command(BaseCommand):
 
         print(path)
         for entry_path in glob(join(path, 'metadata/*.json')):
-            with open(entry_path) as p:
-                entry = json.loads(p.read())
-                process_entry(path, entry)
+            with open(entry_path) as f:
+                entry = json.loads(f.read())
+            with open(join(path, f'markdown/{entry["slug"]}.md'), 'rb') as f:
+                md = f.read().decode('utf-8')
+
+            process_entry(entry, md)
 
 
-def process_entry(path, data):
+def process_entry(data, md):
     print(data['slug'])
     entry, _ = Entry.objects.get_or_create(slug=data['slug'])
     entry.date = parse_date(data['date'])
     entry.title = data['title']
-
-    with open(join(path, 'markdown/{}.md'.format(data['slug'])), 'rb') as md:
-        entry.md = md.read().decode('utf-8')
-
+    entry.md = md
     entry.save()
