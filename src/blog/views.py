@@ -11,7 +11,8 @@ def index(request):
     context = {
         'recent_entries': recent_entries,
     }
-    return render(request, 'index.html.j2', context)
+    response = render(request, 'index.html.j2', context)
+    return response
 
 
 @cache.cache_page(3600)
@@ -23,7 +24,8 @@ def slug(request, slug):
         'html': entry.html,
         'recent_entries': recent_entries,
     }
-    return render(request, 'entry.html.j2', context)
+    response = render(request, 'entry.html.j2', context)
+    return response
 
 
 @cache.cache_page(3600)
