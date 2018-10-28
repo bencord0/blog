@@ -34,7 +34,7 @@ Running Tests
 -------------
 
 Invoke `tox` without arguments.
-        This runs the full test suite against python2 and python3,
+        This runs the full test suite against python3,
         the flake8 linter and produces a coverage report.
         This form is useful in CI environments.
 
