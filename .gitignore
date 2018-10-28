@@ -14,3 +14,4 @@ dist
 staticfiles
 target
 docker*tar
+htmlcov

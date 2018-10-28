@@ -1,14 +1,12 @@
 [[source]]
-
 verify_ssl = true
 name = "pypi"
 url = "https://pypi.python.org/simple"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
 
 [packages]
-
 arrow = "*"
 dj-database-url = "*"
 dj-static = "*"
@@ -20,9 +18,10 @@ gunicorn = "*"
 markdown = "*"
 "psycopg2cffi" = "*"
 raven = "*"
-
+blog = {editable = true, path = "."}
 
 [dev-packages]
-
-pytest = "*"
 coverage = "*"
+factory_boy = "*"
+pytest = "*"
+pytest-django = "*"
