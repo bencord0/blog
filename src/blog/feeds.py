@@ -11,9 +11,6 @@ class RssBlogFeed(Feed):
     description = 'Fragments: small, unrelated items. sometimes broken.'
     item_author_name = 'Ben Cordero'
 
-    def updateddate(self):
-        return Entry.objects.order_by('-date').first().date
-
     def items(self):
         return Entry.objects.order_by('-date')
 
@@ -39,7 +36,7 @@ class RssBlogFeed(Feed):
 class ContentAtom1Feed(Atom1Feed):
     def add_item_elements(self, handler, item):
         super(ContentAtom1Feed, self).add_item_elements(handler, item)
-        if item['content'] is not None:
+        if item.get('content'):
             handler.addQuickElement(
                 'content', item['content'], {'type': 'html'})
 
