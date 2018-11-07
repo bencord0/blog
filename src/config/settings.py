@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django_jinja',
 
     'raven.contrib.django.raven_compat',
+    'graphene_django',
 
     'blog',
 ]
@@ -68,6 +69,10 @@ TEMPLATES = [
         },
     },
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'blog.schema.schema',
+}
 
 DATABASES = {
     'default': dj_database_url.config(
