@@ -1,1 +1,1 @@
-web: python ./src/blog
+web: python ./src/config
