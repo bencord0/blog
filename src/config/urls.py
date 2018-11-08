@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^api/md/(?P<slug>[a-z0-9-_]+)/$', blog.api.md, name='md-slug'),
     url(r'^api/(?P<slug>[a-z0-9-_]+)/(?P<item>[a-z][a-z_]+)/$',
         blog.api.item, name='api-item'),
-    url(r'^api/graphql/', GraphQLView.as_view(graphiql=False)),
+    url(r'^api/graphql/', GraphQLView.as_view(graphiql=True)),
     url(r'^api/(?P<slug>[a-z0-9-_]+)/$', blog.api.slug, name='api-slug'),
     url(r'^api/$', blog.api.index, name='api-index'),
     url(r'^.well-known/keybase.txt$',
