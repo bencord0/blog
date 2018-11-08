@@ -1,4 +1,5 @@
 import graphene
+
 from graphene_django.types import DjangoObjectType
 from blog.models import Entry
 
@@ -6,6 +7,11 @@ from blog.models import Entry
 class EntryType(DjangoObjectType):
     class Meta:
         model = Entry
+
+    summary = graphene.String(required=True)
+    html = graphene.String(required=True)
+    fuzzy_date = graphene.String(required=True)
+    url = graphene.String(required=True)
 
 
 class EntryQuery(object):

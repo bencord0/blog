@@ -44,5 +44,9 @@ class Entry(models.Model):
             'title': self.title,
         }
 
+    @property
+    def url(self):
+        return self.get_absolute_url()
+
     def get_absolute_url(self):
         return reverse('slug', kwargs={'slug': self.slug})
