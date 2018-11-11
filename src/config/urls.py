@@ -1,5 +1,6 @@
 from django.conf.urls import handler404, url
 from django.utils.functional import curry
+from django.views.decorators.csrf import csrf_exempt
 from django.views.defaults import page_not_found
 
 from graphene_django.views import GraphQLView
@@ -20,7 +21,7 @@ urlpatterns = [
     url(r'^api/md/(?P<slug>[a-z0-9-_]+)/$', blog.api.md, name='md-slug'),
     url(r'^api/(?P<slug>[a-z0-9-_]+)/(?P<item>[a-z][a-z_]+)/$',
         blog.api.item, name='api-item'),
-    url(r'^api/graphql/', GraphQLView.as_view(graphiql=True)),
+    url(r'^api/graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
     url(r'^api/(?P<slug>[a-z0-9-_]+)/$', blog.api.slug, name='api-slug'),
     url(r'^api/$', blog.api.index, name='api-index'),
     url(r'^.well-known/keybase.txt$',
