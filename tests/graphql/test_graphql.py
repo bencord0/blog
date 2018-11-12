@@ -6,9 +6,9 @@ from tests.factories.entry import EntryFactory
 
 @pytest.mark.django_db
 def test_basic():
-    result = schema.execute(''' query{allEntries{title}}''')
+    result = schema.execute(''' query{recentEntries{title}}''')
 
-    assert result.data['allEntries'] == []
+    assert result.data['recentEntries'] == []
 
 
 @pytest.mark.django_db
@@ -17,13 +17,13 @@ def test_all_entries():
 
     result = schema.execute('''
         query{
-            allEntries{
+            recentEntries{
                 slug
             }
         }
     ''')
 
-    assert result.data['allEntries'] == [
+    assert result.data['recentEntries'] == [
         {
             'slug': 'foo',
         },
@@ -35,7 +35,7 @@ def test_entry():
     EntryFactory.create(slug="foo")
 
     result = schema.execute('''
-        query($slug: String) {
+        query($slug: String!) {
             entry(slug: $slug) {
                 slug
             }

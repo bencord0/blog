@@ -2,7 +2,7 @@ import graphene
 
 from graphene_django.types import DjangoObjectType
 from blog.models import Entry
-
+from blog.utils import get_entry, get_recent_entries
 
 class EntryType(DjangoObjectType):
     class Meta:
@@ -15,30 +15,26 @@ class EntryType(DjangoObjectType):
 
 
 class EntryQuery(object):
-    all_entries = graphene.List(EntryType)
+    recent_entries = graphene.Field(
+        graphene.List(EntryType),
+        count=graphene.Int(),
+    )
 
     entry = graphene.Field(
         EntryType,
-        slug=graphene.String(),
-        title=graphene.String(),
+        slug=graphene.String(required=True),
     )
 
-    def resolve_all_entries(self, info, **kwargs):
-        return Entry.objects.all()
+    def resolve_recent_entries(self, info, **kwargs):
+        count = kwargs.get('count', 20)
+        return list(get_recent_entries(count))
 
     def resolve_entry(self, info, **kwargs):
-        slug = kwargs.get('slug')
-        title = kwargs.get('title')
+        slug = kwargs['slug']
+        return get_entry(slug)
 
-        if slug is not None:
-            return Entry.objects.get(slug=slug)
 
-        if title is not None:
-            return Entry.objects.get(title=title)
-
-        return None
-
-class RootQuery(EntryQuery, graphene.ObjectType):
+class Query(EntryQuery, graphene.ObjectType):
     pass
 
-schema = graphene.Schema(query=RootQuery)
+schema = graphene.Schema(query=Query)
