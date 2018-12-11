@@ -19,7 +19,7 @@ graphene_django = "*"
 gunicorn = "*"
 markdown = "*"
 "psycopg2cffi" = "*"
-raven = "*"
+sentry-sdk = "*"
 blog = {editable = true, path = "."}
 
 [dev-packages]

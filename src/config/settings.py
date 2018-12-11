@@ -3,6 +3,10 @@ from __future__ import print_function
 import os
 
 import dj_database_url
+import sentry_sdk
+
+from sentry_sdk.integrations.django import DjangoIntegration
+
 
 Truthy = ['True', 'true', '1', 'yes', 'y']
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,7 +33,6 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_jinja',
 
-    'raven.contrib.django.raven_compat',
     'graphene_django',
 
     'blog',
@@ -103,6 +106,7 @@ REST_FRAMEWORK = {
 
 WELLKNOWN_KEYBASE = os.getenv('WELLKNOWN_KEYBASE')
 
-RAVEN_CONFIG = {
-    'dsn': os.getenv('SENTRY_DSN', ''),
-}
+sentry_sdk.init(
+    dsn=os.getenv("SENTRY_DSN"),
+    integrations=[DjangoIntegration()],
+)

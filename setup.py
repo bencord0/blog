@@ -20,7 +20,7 @@ setup(
         'jinja2',
         'markdown',
         'psycopg2cffi',
-        'raven',
+        'sentry-sdk',
     ],
     entry_points={
         'console_scripts': [
