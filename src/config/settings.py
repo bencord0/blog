@@ -106,7 +106,22 @@ REST_FRAMEWORK = {
 
 WELLKNOWN_KEYBASE = os.getenv('WELLKNOWN_KEYBASE')
 
+
+def before_breadcrumb(crumb, hint):
+    if crumb.get('category', None) == 'django.security.DisallowedHost':
+        return None
+    return event
+
+
+def before_send(event, hint):
+    if event.get('logger', None) == 'django.security.DisallowedHost':
+        return NOne
+    return event
+
+
 sentry_sdk.init(
     dsn=os.getenv("SENTRY_DSN"),
     integrations=[DjangoIntegration()],
+    before_breadcrumb=before_breadcrumb,
+    before_send=before_send,
 )
