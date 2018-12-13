@@ -49,4 +49,5 @@ class EntryQuery(object):
 class Query(EntryQuery, graphene.ObjectType):
     pass
 
+
 schema = graphene.Schema(query=Query)

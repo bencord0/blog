@@ -4,6 +4,7 @@ from blog.management.commands.import_entries import process_entry
 from blog.models import Entry
 from tests.factories.entry import EntryFactory
 
+
 @pytest.mark.django_db
 class TestProcessEntry(object):
     @pytest.mark.xfail
@@ -85,4 +86,3 @@ class TestProcessEntry(object):
         entry = Entry.objects.get()
         assert entry.md == expected
         assert entry.html == html
-        

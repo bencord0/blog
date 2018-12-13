@@ -20,7 +20,10 @@ def test_rss(client):
     response = client.get("/feeds/rss/")
     response.status_code == 200
 
-    assert f'<item><title>{entry.title}</title><link>http://testserver/{entry.slug}/</link>' in response.content.decode()
+    assert (
+        f'<item><title>{entry.title}</title>'
+        f'<link>http://testserver/{entry.slug}/</link>'
+    ) in response.content.decode()
 
 
 @pytest.mark.django_db
@@ -32,21 +35,19 @@ def test_many_rss(client):
     response = client.get("/feeds/rss/")
     response.status_code == 200
 
-    assert f'<item><title>{e1.title}</title><link>http://testserver/{e1.slug}/</link>' in response.content.decode()
-    assert f'<item><title>{e2.title}</title><link>http://testserver/{e2.slug}/</link>' in response.content.decode()
+    assert (
+        f'<item><title>{e1.title}</title>'
+        f'<link>http://testserver/{e1.slug}/</link>'
+    ) in response.content.decode()
+    assert (
+        f'<item><title>{e2.title}</title>'
+        f'<link>http://testserver/{e2.slug}/</link>'
+    ) in response.content.decode()
 
 
 @pytest.mark.django_db
 @pytest.mark.usefixtures("dj_cache")
 def test_atom(client):
-    response = client.get("/feeds/atom/")
-    response.status_code == 200
-
-
-@pytest.mark.django_db
-@pytest.mark.usefixtures("dj_cache")
-def test_many_atom(client):
-    EntryFactory.create()
     response = client.get("/feeds/atom/")
     response.status_code == 200
 

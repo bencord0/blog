@@ -1,6 +1,8 @@
 import io
 import pytest
 
+from sentry_sdk.integrations.wsgi import _ScopePoppingResponse
+
 
 @pytest.mark.django_db
 def test_application():
@@ -20,4 +22,9 @@ def test_application():
 
     # A dud request is quickly rejected as a bad client request.
     response = application(environ, start_response)
+
+    # undo sentry patching
+    if isinstance(response, _ScopePoppingResponse):
+        response = response._response
+
     assert response.status_code == 400

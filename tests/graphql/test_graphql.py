@@ -5,6 +5,7 @@ from blog.schema import schema
 from collections import OrderedDict
 from tests.factories.entry import EntryFactory
 
+
 def unorder(ordered_dict):
     if isinstance(ordered_dict, OrderedDict):
         return unorder(dict(ordered_dict))
@@ -60,18 +61,19 @@ def test_all_entries():
 def test_entry():
     EntryFactory.create(slug="foo")
 
-    result = schema.execute('''
+    result = schema.execute(
+        '''
         query($slug: String!) {
             entry(slug: $slug) {
                 slug
             }
         }
-    ''',
-    variables={
-        'slug': 'foo',
-    })
+        ''',
+        variables={
+            'slug': 'foo',
+        }
+    )
 
     assert result.data['entry'] == {
         'slug': 'foo',
     }
-
