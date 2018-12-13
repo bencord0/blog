@@ -110,12 +110,12 @@ WELLKNOWN_KEYBASE = os.getenv('WELLKNOWN_KEYBASE')
 def before_breadcrumb(crumb, hint):
     if crumb.get('category', None) == 'django.security.DisallowedHost':
         return None
-    return event
+    return crumb
 
 
 def before_send(event, hint):
     if event.get('logger', None) == 'django.security.DisallowedHost':
-        return NOne
+        return None
     return event
 
 
