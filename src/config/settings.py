@@ -3,8 +3,8 @@ from __future__ import print_function
 import os
 
 import dj_database_url
-import sentry_sdk
 
+import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 

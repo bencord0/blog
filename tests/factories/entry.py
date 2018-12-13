@@ -1,9 +1,10 @@
-import factory
 import string
+from datetime import datetime
+
+import factory
+from factory import fuzzy
 
 from blog.models import Entry
-from datetime import datetime
-from factory import fuzzy
 
 
 class EntryFactory(factory.django.DjangoModelFactory):

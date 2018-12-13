@@ -1,8 +1,9 @@
+from collections import OrderedDict
+
 import pytest
 
-
 from blog.schema import schema
-from collections import OrderedDict
+
 from tests.factories.entry import EntryFactory
 
 

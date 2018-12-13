@@ -1,15 +1,18 @@
 import datetime
+from functools import partial
+
+from django.http.response import Http404
+
 import pytest
 
 from blog.utils import (
-    get_all_entries,
-    get_recent_entries,
-    get_entry,
-    parse_date,
     UTC,
+    get_all_entries,
+    get_entry,
+    get_recent_entries,
+    parse_date,
 )
-from django.http.response import Http404
-from functools import partial
+
 from tests.factories.entry import EntryFactory
 
 # datetime helper, create datetime objects in the UTC timezone

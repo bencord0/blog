@@ -1,4 +1,5 @@
 import io
+
 import pytest
 
 from sentry_sdk.integrations.wsgi import _ScopePoppingResponse

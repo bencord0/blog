@@ -1,7 +1,8 @@
 import graphene
-
 from graphene import relay
+
 from graphene_django.types import DjangoObjectType
+
 from blog import models
 from blog.utils import get_entry, get_recent_entries
 

@@ -1,6 +1,7 @@
 import pytest
 
 from blog.models import Entry
+
 from tests.factories.entry import EntryFactory
 
 

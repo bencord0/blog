@@ -2,6 +2,7 @@ import pytest
 
 from blog.management.commands.import_entries import process_entry
 from blog.models import Entry
+
 from tests.factories.entry import EntryFactory
 
 
