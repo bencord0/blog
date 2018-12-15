@@ -1,6 +1,5 @@
 blog:
   build: .
-  image: bencord0/blog
   links:
     - db:postgres
   environment:

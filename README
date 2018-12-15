@@ -11,37 +11,51 @@ Getting started
   $ git clone https://github.com/bencord0/blog -b python-django
   $ git clone https://github.com/bencord0/blogposts
 
-You will need access to a postgres instance. Set DATABASE_URL accordingly.
-
   $ cd blog
-  $ pipenv install
-  $ pipenv run pip install -e .
-  $ pipenv run blog manage migrate
-  $ pipenv run blog manage collectstatic
-  $ pipenv run blog manage import_entries ../blogposts
 
-  $ pipenv run blog -b 0.0.0.0:8000
+  # Create and enter the virtualenv
+  # You may need to install `pg_config` first, to build the postgres driver.
+  $ pipenv install --deploy && pipenv shell
+
+  # The `blog` command is now availble inside the virtualenv shell.
+  $ blog manage migrate
+  $ blog manage collectstatic
+  $ blog manage import_entries ../blogposts
+
+  # Run the webserver
+  $ export ALLOWED_HOSTS=localhost
+  $ blog -b 0.0.0.0:8000
 
 2/. Report inconsistencies with the live site, and make suggestions.
 
 Docker
 ------
 
-  $ docker-compose build
-  $ docker-compose up
+Build docker image, setup a database and import blogposts.
+
+  $ make compose{-migrate,-import}
+
+To run the webserver:
+
+  $ make web
+
+It will be available on http://localhost:8000/
 
 Running Tests
 -------------
 
+  # Install development dependencies
+  $ pipenv install --dev
+
 Invoke `tox` without arguments.
-        This runs the full test suite against python3,
-        the flake8 linter and produces a coverage report.
+        This runs the full test suite, the flake8 linter
+        and produces a coverage report.
         This form is useful in CI environments.
 
-Or `make test`.
-        This runs the full test suite using the current environment.
-        You may need to `pip install -r test-requirements.txt first.
-        This is intended to run in an existing environment.
+Invoke `make test`,
+    or `make test TEST_ARGS=tests`
+        This runs the full test suite using the current environment,
+        or a subset of the tests if you specify `TEST_ARGS`.
 
 Finally `make coverage`.
         Like `make test` this will run the full test suite, but
