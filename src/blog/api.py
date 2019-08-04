@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Entry
+from .serializers import SummaryEntrySerializer
 
 
 class EntryResource(APIView):
@@ -41,9 +42,10 @@ def item(request, slug, item):
 
 @api_view(['GET'])
 def index(request):
-    entries = Entry.objects.order_by('-date').values('slug', 'title', 'date')
+    entries = Entry.objects.order_by('-date')
+    serializer = SummaryEntrySerializer(entries, many=True)
     return Response(
-        entries,
+        serializer.data,
         headers={'Access-Control-Allow-Origin': '*'},
     )
 

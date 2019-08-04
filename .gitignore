@@ -11,6 +11,7 @@ venv
 build
 db.sqlite3
 dist
+node_modules
 staticfiles
 target
 docker*tar

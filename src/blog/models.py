@@ -20,7 +20,7 @@ class Entry(models.Model):
 
     @property
     def summary(self):
-        return self.html.split('</p>', 1)[0]
+        return self.html.split('</p>', 1)[0].strip('<p>')
 
     @property
     def fuzzy_date(self):
