@@ -4,7 +4,7 @@ name = "pypi"
 url = "https://pypi.python.org/simple"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
 
 [packages]
 arrow = "*"
@@ -29,3 +29,4 @@ factory_boy = "*"
 pytest = "*"
 pytest-django = "*"
 tox = "*"
+Werkzeug = "*"

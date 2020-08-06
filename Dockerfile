@@ -1,4 +1,4 @@
-FROM python:3.7.1 as builder
+FROM python:3.8 as builder
 WORKDIR /app/
 
 COPY Pipfile /app/

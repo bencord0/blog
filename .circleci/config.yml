@@ -5,7 +5,7 @@ jobs:
   build:
 
     docker:
-      - image: circleci/python:3.7
+      - image: circleci/python:3.8
 
     working_directory: ~/app
     steps:
@@ -39,7 +39,7 @@ jobs:
             pip install --user -r tests-requirements.txt
             tox
           environment:
-            TOXENV: py37
+            TOXENV: py38
 
       - run:
           name: lint

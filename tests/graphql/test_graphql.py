@@ -70,7 +70,7 @@ def test_entry():
             }
         }
         ''',
-        variables={
+        variable_values={
             'slug': 'foo',
         }
     )

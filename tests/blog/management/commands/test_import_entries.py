@@ -8,9 +8,9 @@ from tests.factories.entry import EntryFactory
 
 @pytest.mark.django_db
 class TestProcessEntry(object):
-    @pytest.mark.xfail
     def test_invalid_entry(self):
-        process_entry({}, '')
+        with pytest.raises(KeyError):
+            process_entry({}, '')
 
     def test_process_entry(self):
         e = EntryFactory.build()

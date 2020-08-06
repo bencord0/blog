@@ -1,8 +1,8 @@
 from django.conf.urls import handler404, url
-from django.utils.functional import curry
 from django.views.decorators.csrf import csrf_exempt
 from django.views.defaults import page_not_found
 
+from functools import partial
 from graphene_django.views import GraphQLView
 
 import wellknown
@@ -30,4 +30,4 @@ urlpatterns = [
     url(r'^(?P<slug>[a-z0-9-_]+)/$', blog.views.slug, name='slug'),
 ]
 
-handler404 = curry(page_not_found, template_name='404.html.j2')  # noqa: F811
+handler404 = partial(page_not_found, template_name='404.html.j2')  # noqa: F811

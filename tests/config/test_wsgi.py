@@ -2,30 +2,14 @@ import io
 
 import pytest
 
-from sentry_sdk.integrations.wsgi import _ScopePoppingResponse
-
 
 @pytest.mark.django_db
 def test_application():
     from config.wsgi import application
-
-    # https://www.python.org/dev/peps/pep-0333/#environ-variables
-    environ = {
-        'REQUEST_METHOD': 'GET',
-        'SERVER_NAME': 'server',
-        'SERVER_PORT': 80,
-        'wsgi.input': io.BytesIO(b''),
-    }
-
-    # https://www.python.org/dev/peps/pep-0333/#the-start-response-callable
-    def start_response(status, response_headers, exc_info=None):
-        pass
+    from werkzeug.test import Client
 
     # A dud request is quickly rejected as a bad client request.
-    response = application(environ, start_response)
+    client = Client(application)
 
-    # undo sentry patching
-    if isinstance(response, _ScopePoppingResponse):
-        response = response._response
-
-    assert response.status_code == 400
+    _, status, _= client.get("/")
+    assert status == '400 Bad Request'
