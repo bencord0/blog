@@ -1,5 +1,3 @@
-import io
-
 import pytest
 
 
@@ -11,5 +9,5 @@ def test_application():
     # A dud request is quickly rejected as a bad client request.
     client = Client(application)
 
-    _, status, _= client.get("/")
+    _, status, _ = client.get("/")
     assert status == '400 Bad Request'

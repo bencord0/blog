@@ -48,14 +48,14 @@ class TestSlug(object):
 
 @pytest.mark.django_db
 def test_about(client):
-    response = client.get(f"/about/")
+    response = client.get("/about/")
     assert response.status_code == 200
     assert "Ben Cordero" in response.content.decode()
 
 
 @pytest.mark.django_db
 def test_archive(client):
-    response = client.get(f"/archive/")
+    response = client.get("/archive/")
     assert response.status_code == 200
 
 

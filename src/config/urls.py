@@ -1,8 +1,9 @@
+from functools import partial
+
 from django.conf.urls import handler404, url
 from django.views.decorators.csrf import csrf_exempt
 from django.views.defaults import page_not_found
 
-from functools import partial
 from graphene_django.views import GraphQLView
 
 import wellknown

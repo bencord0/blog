@@ -12,7 +12,10 @@ setup(
         'arrow',
         'dj-database-url',
         'dj-static',
-        'Django',
+
+        # https://github.com/niwinz/django-jinja/issues/260
+        'Django<3.1',
+
         'django-debug-toolbar',
         'django-jinja',
         'djangorestframework',
@@ -23,6 +26,7 @@ setup(
         'markdown',
         'psycopg2cffi',
         'sentry-sdk',
+        'Werkzeug',
     ],
     entry_points={
         'console_scripts': [

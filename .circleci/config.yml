@@ -1,6 +1,6 @@
 # https://circleci.com/blog/how-to-build-a-docker-image-on-circleci-2-0/
 # https://discuss.circleci.com/t/multi-stage-docker/12386/4
-version: 2
+version: 2.1
 jobs:
   build:
 
@@ -13,7 +13,7 @@ jobs:
 
       # Remove this stanza when the default version of docker supports multi-stage builds
       - setup_remote_docker:
-          version: 17.06.0-ce
+          version: 19.03.12
 
       - restore_cache:
           keys:
@@ -36,20 +36,20 @@ jobs:
       - run:
           name: tests
           command: |
-            pip install --user -r tests-requirements.txt
-            tox
+            pipenv install --dev --deploy
+            pipenv run tox
           environment:
             TOXENV: py38
 
       - run:
           name: lint
-          command: tox
+          command: pipenv run tox
           environment:
             TOXENV: flake8
 
       - run:
           name: coverage
-          command: tox
+          command: pipenv run tox
           environment:
             TOXENV: coverage-report
 
