@@ -8,6 +8,7 @@ python_version = "3.8"
 
 [packages]
 arrow = "*"
+daphne = "*"
 dj-database-url = "*"
 dj-static = "*"
 django = "*"
@@ -26,6 +27,8 @@ blog = {editable = true, path = "."}
 [dev-packages]
 coverage = "*"
 factory_boy = "*"
+flake8 = "*"
+flake8-import-order = "*"
 pytest = "*"
 pytest-django = "*"
 tox = "*"
