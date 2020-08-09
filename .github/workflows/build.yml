@@ -1,0 +1,42 @@
+---
+name: 'Build'
+on: 'push'
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    # container: 'gentoo/stage3-amd64:latest'
+
+    steps:
+    - uses: 'actions/checkout@v2'
+
+    - name: 'Setup Python'
+      uses: 'actions/setup-python@main'
+
+    # https://docs.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#caching-dependencies
+    - name: 'Package Cache'
+      uses: 'actions/cache@v2'
+      with:
+        path: ~
+          ~/.cache/pip
+          ~/.local/share/virtualenvs
+        key: "${{ runner.os }}-pip-${{ hashFiles('Pipfile.lock') }}"
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          ${{ runner.os }}-
+
+    - name: 'Install Dependencies'
+      run: |
+        python -m ensurepip
+        python -m pip install --upgrade pip pipenv
+        python -m pipenv install --dev --deploy
+
+    - name: 'Run Tests'
+      run: |
+        python -m pipenv run coverage run -m pytest
+        python -m pipenv run coverage html
+
+    - name: 'Upload Coverage'
+      uses: 'actions/upload-artifact@v2'
+      with:
+        name: htmlcov
+        path: htmlcov/
