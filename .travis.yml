@@ -1,6 +1,6 @@
 language: python
-dist: xenial
-python: '3.7'
+dist: bionic
+python: '3.8'
 sudo: false
 env:
   global:
@@ -11,15 +11,14 @@ before_install:
   - uname -a
   - lsb_release -a
 install:
-  - pip install -r tests-requirements.txt
-  - virtualenv --version
-  - easy_install --version
+  - python -m pip install --upgrade pip pipenv
+  - python -m pipenv install --dev --deploy
   - pip --version
   - tox --version
 script:
-  - tox -v
+  - python -m pipenv run tox -v
 after_success:
-  - tox -e coverage-report
+  - python -m pipenv run tox -e coverage-report
 after_failure:
   - more .tox/log/* | cat
   - more .tox/*/log/* | cat
