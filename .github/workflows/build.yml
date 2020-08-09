@@ -1,10 +1,10 @@
 ---
 name: 'Build'
 on: 'push'
+
 jobs:
   build:
     runs-on: 'ubuntu-latest'
-    # container: 'gentoo/stage3-amd64:latest'
 
     steps:
     - uses: 'actions/checkout@v2'
@@ -23,6 +23,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
           ${{ runner.os }}-
+      if: ${{ env.ACTIONS_RUNTIME_TOKEN }} != ""
 
     - name: 'Install Dependencies'
       run: |
@@ -40,3 +41,4 @@ jobs:
       with:
         name: htmlcov
         path: htmlcov/
+      if: ${{ env.ACTIONS_RUNTIME_TOKEN }} != ""
