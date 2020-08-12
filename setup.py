@@ -26,6 +26,7 @@ setup(
         'markdown',
         'psycopg2cffi',
         'sentry-sdk',
+        'uvicorn',
         'Werkzeug',
         'whitenoise',
     ],

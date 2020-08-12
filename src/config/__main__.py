@@ -17,7 +17,12 @@ def main():
         execute_from_command_line(sys.argv[1:])
     else:
         # Run the webserver
-        sys.argv = [sys.argv[0], 'config.wsgi:application'] + sys.argv[1:]
+        sys.argv = [
+            sys.argv[0],
+            'config.asgi:application',
+            '-k', 'uvicorn.workers.UvicornWorker'
+        ] + sys.argv[1:]
+
         print(sys.argv)
         sys.exit(run())
 
