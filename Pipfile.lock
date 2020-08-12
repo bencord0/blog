@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2d0afa0de903710031a25f53c2d0a41dfdd74847c5c55e54f01c51401d185238"
+            "sha256": "6d7b22295ff844b17833e759b32da41868a26c32022a9f4f8517d63b3668000a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -163,27 +163,24 @@
         },
         "django": {
             "hashes": [
-                "sha256:96fbe04e8ba0df289171e7f6970e0ff8b472bf4f909ed9e0e5beccbac7e1dbbe",
-                "sha256:c22b4cd8e388f8219dc121f091e53a8701f9f5bca9aa132b5254263cab516215"
+                "sha256:1a63f5bb6ff4d7c42f62a519edc2adbb37f9b78068a5a862beff858b68e3dc8b",
+                "sha256:2d390268a13c655c97e0e2ede9d117007996db692c1bb93eabebd4fb7ea7012b"
             ],
             "index": "pypi",
-            "version": "==3.0.9"
+            "version": "==3.1"
         },
         "django-debug-toolbar": {
             "hashes": [
-                "sha256:eabbefe89881bbe4ca7c980ff102e3c35c8e8ad6eb725041f538988f2f39a943",
-                "sha256:ff94725e7aae74b133d0599b9bf89bd4eb8f5d2c964106e61d11750228c8774c"
+                "sha256:4f2cbbbf09349e43bcaa1fd6bc8a3d97a6d19008377dc361adefe38251920597",
+                "sha256:e75d88855ceedad4a456c195073086de99035d9ee20f4aeb5c9d68bf355a8457"
             ],
             "index": "pypi",
-            "version": "==2.2"
+            "version": "==3.0a2"
         },
         "django-jinja": {
-            "hashes": [
-                "sha256:4e3e97d7b40669926a9517eb4522cd98dce2e32dcba908aad156810b74744148",
-                "sha256:7459985c25ddb6584c6bab345761c8c5557713448e6fbb322af1b6dd7f5512bd"
-            ],
-            "index": "pypi",
-            "version": "==2.6.0"
+            "editable": true,
+            "git": "https://github.com/enricobarzetti/django-jinja",
+            "ref": "29319e8214d3496f8319cfe14db8dbe9f0f66435"
         },
         "djangorestframework": {
             "hashes": [
@@ -203,11 +200,11 @@
         },
         "graphene-django": {
             "hashes": [
-                "sha256:03dfe2081c256e56d94d90b33b0bf6fa46ec274186023ccffb9c3aa46a856587",
-                "sha256:3d92bf2c43834f3e1caa1c24b79cc5f7c5974670d7d92fd3a4f28c2fd7680c5b"
+                "sha256:0e33cdec0774284175c387c2af1e0ef4eb0f4e10a56a3a1b2d39bc3a74d9a538",
+                "sha256:8a4efc7bf954ba0b5a28d3cdb090b36941aca6b83d211e3cd3ab29cf53ac6154"
             ],
             "index": "pypi",
-            "version": "==2.12.1"
+            "version": "==2.13.0"
         },
         "graphql-core": {
             "hashes": [

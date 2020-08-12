@@ -12,12 +12,13 @@ setup(
         'arrow',
         'dj-database-url',
         'dj-static',
+        'Django',
 
+        # Prerelease versions to support django 3.1
         # https://github.com/niwinz/django-jinja/issues/260
-        'Django<3.1',
+        'django-debug-toolbar>=3.0a2',
+        'django-jinja @ git+https://github.com/enricobarzetti/django-jinja@29319e8214d3496f8319cfe14db8dbe9f0f66435',
 
-        'django-debug-toolbar',
-        'django-jinja',
         'djangorestframework',
         'graphene',
         'graphene_django',
