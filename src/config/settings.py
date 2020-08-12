@@ -93,6 +93,8 @@ DATABASES = {
         default='sqlite:///{}/db.sqlite3'.format(BASE_DIR))
 }
 
+CACHE_MIDDLEWARE_SECONDS = 3600
+
 LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
 USE_I18N = True
