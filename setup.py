@@ -11,7 +11,6 @@ setup(
     install_requires=[
         'arrow',
         'dj-database-url',
-        'dj-static',
         'Django',
 
         # Prerelease versions to support django 3.1
@@ -28,6 +27,7 @@ setup(
         'psycopg2cffi',
         'sentry-sdk',
         'Werkzeug',
+        'whitenoise',
     ],
     entry_points={
         'console_scripts': [

@@ -10,7 +10,6 @@ python_version = "3.8"
 arrow = "*"
 daphne = "*"
 dj-database-url = "*"
-dj-static = "*"
 django = ">=3.1"
 django-debug-toolbar = ">=3.0a2"
 django-jinja = {editable = true, git = "https://github.com/enricobarzetti/django-jinja@29319e8214d3496f8319cfe14db8dbe9f0f66435"}
@@ -22,6 +21,8 @@ jinja2 = "*"
 markdown = "*"
 "psycopg2cffi" = "*"
 sentry-sdk = "*"
+whitenoise = "*"
+
 blog = {editable = true, path = "."}
 
 [dev-packages]
