@@ -27,7 +27,6 @@ setup(
         'psycopg2cffi',
         'sentry-sdk',
         'uvicorn',
-        'Werkzeug',
         'whitenoise',
     ],
     entry_points={

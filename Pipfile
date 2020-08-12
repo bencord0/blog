@@ -22,18 +22,18 @@ markdown = "*"
 sentry-sdk = "*"
 uvicorn = "*"
 whitenoise = "*"
-
 blog = {editable = true, path = "."}
 
 [dev-packages]
+asgi-testclient = "*"
 coverage = "*"
-factory_boy = "*"
+factory_boy = "<3.0"
 flake8 = "*"
 flake8-import-order = "*"
 pytest = "*"
+pytest-asyncio = "*"
 pytest-django = "*"
 tox = "*"
-Werkzeug = "*"
 
 [pipenv]
 allow_prereleases = true
