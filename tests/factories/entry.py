@@ -3,11 +3,12 @@ from datetime import datetime
 
 import factory
 from factory import fuzzy
+from factory.django import DjangoModelFactory
 
 from blog.models import Entry
 
 
-class EntryFactory(factory.django.DjangoModelFactory):
+class EntryFactory(DjangoModelFactory):
     class Meta:
         model = Entry
 

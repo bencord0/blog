@@ -23,11 +23,12 @@ sentry-sdk = "*"
 uvicorn = "*"
 whitenoise = "*"
 blog = {editable = true, path = "."}
+factory-boy = "*"
 
 [dev-packages]
 asgi-testclient = "*"
 coverage = "*"
-factory_boy = "<3.0"
+factory_boy = "*"
 flake8 = "*"
 flake8-import-order = "*"
 pytest = "*"
