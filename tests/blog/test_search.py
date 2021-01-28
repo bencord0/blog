@@ -1,11 +1,15 @@
 import pytest
 
 from blog.models import Entry
-
+from django.db import connections
 from tests.factories.entry import EntryFactory
 
+need_postgres = pytest.mark.skipif(
+    connections.databases['default']['ENGINE'] != 'django.db.backends.postgresql_psycopg2',
+    reason='need postgres for search feature')
 
 @pytest.mark.django_db
+@need_postgres
 class TestSearch:
 
     def test_search(self, client):
