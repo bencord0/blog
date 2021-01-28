@@ -23,7 +23,7 @@ if not SECRET_KEY:
     # 38 bytes encodes (via base64) to 51 characters.
     # Without a parameter, this may default to only 44 characters.
     # Increase strength here as necessary.
-    SECRET_KEY = secrets.token_urlsafe((38)
+    SECRET_KEY = secrets.token_urlsafe(38)
 
 DEBUG = os.environ.get('DEBUG', 'False') in Truthy
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
