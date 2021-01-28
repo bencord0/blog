@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import os
+import secrets
 
 import dj_database_url
 
@@ -20,10 +21,11 @@ CUR_DIR = os.path.abspath(os.curdir)
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 if not SECRET_KEY:
-    import random
-    SECRET_KEY = ''.join([random.SystemRandom().choice(
-        'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
-    ) for i in range(50)])
+    # Generate at least 50 characters
+    # 38 bytes encodes (via base64) to 51 characters.
+    # Without a parameter, this may default to only 44 characters.
+    # Increase strength here as necessary.
+    SECRET_KEY = secrets.token_urlsafe((38)
 
 DEBUG = os.environ.get('DEBUG', 'False') in Truthy
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
