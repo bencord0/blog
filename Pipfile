@@ -4,14 +4,14 @@ name = "pypi"
 url = "https://pypi.python.org/simple"
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"
 
 [packages]
 arrow = "*"
 dj-database-url = "*"
 django = ">=3.1"
-django-debug-toolbar = ">=3.0a2"
-django-jinja = {editable = true, git = "https://github.com/niwinz/django-jinja@d025ccdcfce7c68390b6c6e307de8d43df538cd1"}
+django-debug-toolbar = ">=3.0"
+django-jinja = ">=2.7"
 djangorestframework = "*"
 graphene = "*"
 graphene_django = "*"
@@ -20,7 +20,7 @@ jinja2 = "*"
 markdown = "*"
 "psycopg2cffi" = "*"
 sentry-sdk = "*"
-uvicorn = "*"
+uvicorn = {version="*", extras = ["standard"]}
 whitenoise = "*"
 blog = {editable = true, path = "."}
 factory-boy = "*"
