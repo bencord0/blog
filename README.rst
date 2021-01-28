@@ -57,6 +57,11 @@ Invoke `make test`,
         This runs the full test suite using the current environment,
         or a subset of the tests if you specify `TEST_ARGS`.
 
+        To run the full set of tests successfully, you will need to
+        set `DATABASE_URL` to a postgres instance.
+
+        $ export DATABASE_URL=postgres://localhost/test
+
 Finally `make coverage`.
         Like `make test` this will run the full test suite, but
         will also produce a coverage report at the end.

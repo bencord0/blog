@@ -19,6 +19,10 @@ def get_entry(slug):
     return get_object_or_404(Entry, slug=slug)
 
 
+def search_entries(query):
+    return Entry.objects.filter(md__search=query)
+
+
 class UTC(datetime.tzinfo):
     def utcoffset(self, dt):
         return datetime.timedelta(0)

@@ -1,0 +1,14 @@
+{% extends "base.html.j2" %}
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+    <form action="/search/" method="get">
+        {{ form }}
+        <input type="submit" value="Go">
+    </form>
+
+    {% for entry in entries %}
+        <h6><a href="/{{ entry.slug }}/">{{ entry.title }}</a></h6>
+        {{ entry.summary|safe }}
+    {% endfor %}
+{% endblock content %}

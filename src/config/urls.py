@@ -17,6 +17,7 @@ urlpatterns = [
     re_path(r'^$', blog.views.index, name='index'),
     re_path(r'^about/$', blog.views.about, name='about'),
     re_path(r'^archive/$', blog.views.archive, name='archive'),
+    re_path(r'^search/$', blog.views.search, name='search'),
     re_path(r'^health$', blog.views.health, name='health'),
     re_path(r'^feeds/atom/$', blog.feeds.atom, name='atom'),
     re_path(r'^feeds/rss/$', blog.feeds.rss, name='rss'),

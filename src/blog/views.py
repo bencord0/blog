@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from .utils import get_all_entries, get_entry, get_recent_entries
+from .forms import SearchForm
+from .utils import get_all_entries, get_entry, get_recent_entries, search_entries
 
 
 def index(request):
@@ -41,6 +42,19 @@ def archive(request):
         'all_entries': all_entries,
     }
     return render(request, 'archive.html.j2', context)
+
+
+def search(request):
+    query = request.GET.get('q', '')
+    entries = search_entries(query)
+    form = SearchForm()
+
+    context = {
+        'query': query,
+        'entries': entries,
+        'form': form,
+    }
+    return render(request, 'search.html.j2', context)
 
 
 def health(request):
