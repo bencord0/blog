@@ -72,6 +72,11 @@
             <h3>Feeds</h3>
             <a href="/feeds/atom/">Atom</a> /
             <a href="/feeds/rss/">RSS</a>
+            <form action="/search/" method="get">
+                <div class="form-control input-sm">
+                    {{ form.q }}
+                </div>
+            </form>
             {% endblock pane %}
         </div>
     {% endblock main %}

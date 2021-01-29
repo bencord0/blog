@@ -2,13 +2,18 @@
 {% block title %}Search{% endblock title %}
 
 {% block content %}
-    <form action="/search/" method="get">
-        {{ form }}
-        <input type="submit" value="Go">
-    </form>
-
+    <h3>Search: <em>{{ query }}</em></h3>
+    <br />
+    {% if entries | length > 0 %}
     {% for entry in entries %}
-        <h6><a href="/{{ entry.slug }}/">{{ entry.title }}</a></h6>
+        <h2><a href="/{{ entry.slug }}/">{{ entry.title }}</a></h2>
+        <h6>posted {{ entry.fuzzy_date }} by  <a href="/about/">Ben Cordero</a>.</h6>
         {{ entry.summary|safe }}
+        <div>
+            <p><a href="/{{ entry.slug }}/">Read more</a></p>
+        </div>
     {% endfor %}
+    {% else %}
+        <h2>No posts found</h2>
+    {% endif %}
 {% endblock content %}

@@ -20,7 +20,7 @@ def get_entry(slug):
 
 
 def search_entries(query):
-    return Entry.objects.filter(md__search=query)
+    return Entry.objects.filter(md__search=query).order_by('-date')
 
 
 class UTC(datetime.tzinfo):
