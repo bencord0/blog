@@ -1,5 +1,6 @@
 import os
 import secrets
+from pathlib import Path
 
 import dj_database_url
 
@@ -14,8 +15,10 @@ except ImportError:
 
 
 Truthy = ['True', 'true', '1', 'yes', 'y']
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CUR_DIR = os.path.abspath(os.curdir)
+BASE_DIR = Path(__file__).parent.parent
+CUR_DIR = Path.cwd()
+
+CLIENT_DIR = BASE_DIR / 'client'
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 if not SECRET_KEY:
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'django_jinja',
 
     'graphene_django',
+    'react_loader',
 
     'blog',
 ]
@@ -67,8 +71,18 @@ MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 
 STATICFILES_FINDERS = [
+    # Copy files from STATICFILES_DIR
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    # Copy files from each django app
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
+# React generated files
+REACT_LOADER_BUNDLE_DIR = CLIENT_DIR / 'build'
+STATICFILES_DIRS = (
+    # React static files
+    CLIENT_DIR / 'build' / 'static',
+)
 
 TEMPLATES = [
     {

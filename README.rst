@@ -19,8 +19,11 @@ Getting started
 
   # The `blog` command is now availble inside the virtualenv shell.
   $ blog manage migrate
-  $ blog manage collectstatic
   $ blog manage import_entries ../blogposts
+
+  # Generate static assets
+  $ (cd src/client; npm install && npm run build)
+  $ blog manage collectstatic
 
   # Run the webserver
   $ export ALLOWED_HOSTS=localhost
