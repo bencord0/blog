@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     'graphene_django',
     'react_loader',
+    'node',
 
     'blog',
 ]
