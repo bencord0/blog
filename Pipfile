@@ -21,6 +21,7 @@ markdown = "*"
 "psycopg2cffi" = "*"
 sentry-sdk = "*"
 uvicorn = {version="*", extras = ["standard"]}
+uvloop = "*"
 whitenoise = "*"
 blog = {editable = true, path = "."}
 factory-boy = "*"
