@@ -8,7 +8,7 @@ class TestEntry(object):
     def test_entry(self):
         assert not Entry.objects.exists()
 
-        e = Entry(
+        e = Entry.objects.create(
             slug="the-slug",
             title="My Title",
             md="""
