@@ -1,11 +1,12 @@
-import subprocess
-
 # Run the `nodejs` binary, driven by python code
 #
 #   Start an interpreter
 #
 #   $ python -m node
 #
+import subprocess
+
+
 def main():
     # Synchronous blocking call, wait for an exit code
     exit = subprocess.run(['node'])

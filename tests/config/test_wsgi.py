@@ -1,7 +1,8 @@
-import pytest
+from config.wsgi import application
+
 from django.test import Client
 
-from config.wsgi import application
+import pytest
 
 
 @pytest.mark.django_db

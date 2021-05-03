@@ -2,13 +2,17 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from .forms import SearchForm
-from .utils import get_all_entries, get_entry, get_recent_entries, search_entries
+from .utils import (
+    get_all_entries, get_entry, get_recent_entries, search_entries
+)
+
 
 def default_context():
     return {
         'recent_entries': get_recent_entries(),
         'form': SearchForm(),
     }
+
 
 def index(request):
     context = default_context()

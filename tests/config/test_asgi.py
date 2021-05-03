@@ -1,7 +1,8 @@
-import pytest
 from asgi_testclient import TestClient as Client
 
 from config.asgi import application
+
+import pytest
 
 
 @pytest.mark.asyncio
