@@ -5,7 +5,7 @@ COPY src/client /app/src/client/
 RUN npm install
 RUN npm run build
 
-FROM python:3.9 as builder
+FROM python:3.10.0b4 as builder
 WORKDIR /app/
 
 # From build context
