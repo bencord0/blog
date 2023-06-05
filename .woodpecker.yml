@@ -1,4 +1,6 @@
 ---
+skip_clone: true
+
 pipeline:
   hello:
     image: bash
