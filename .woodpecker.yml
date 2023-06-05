@@ -1,0 +1,6 @@
+---
+pipeline:
+  hello:
+    image: bash
+    commands:
+      - echo "Hello World"
