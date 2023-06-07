@@ -1,6 +1,7 @@
 ---
 #skip_clone: true
-#clone: {}
+clone:
+  image: bash
 
 pipeline:
   hello:
