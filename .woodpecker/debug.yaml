@@ -3,4 +3,5 @@ pipeline:
   hello:
     image: "python"
     commands:
-      - print("Hello World")
+      - |
+        print("Hello World")
