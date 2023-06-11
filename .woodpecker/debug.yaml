@@ -1,7 +1,6 @@
 ---
 pipeline:
   hello:
-    image: "python"
+    image: "bash"
     commands:
-      - |
-        print("Hello World")
+      - echo "Hello World"
