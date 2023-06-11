@@ -1,9 +1,5 @@
 ---
-#skip_clone: true
-#clone: {}
-
 pipeline:
   hello:
-    image: bash
     commands:
       - echo "Hello World"
