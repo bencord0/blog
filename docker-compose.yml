@@ -1,12 +1,15 @@
-blog:
-  build: .
-  links:
-    - db:postgres
-  environment:
-    ALLOWED_HOSTS: "*"
-    DATABASE_URL: "postgres://postgres@postgres/postgres"
-  ports:
-    - "8000:8000"
+services:
+  blog:
+    build: .
+    links:
+      - db:postgres
+    environment:
+      ALLOWED_HOSTS: "*"
+      DATABASE_URL: "postgres://postgres@postgres/postgres"
+    ports:
+      - "8000:8000"
 
-db:
-  image: postgres
+  db:
+    image: postgres
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
