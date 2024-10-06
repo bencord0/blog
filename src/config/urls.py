@@ -17,7 +17,8 @@
 
 from functools import partial
 
-from django.conf.urls import handler404, re_path
+from django.conf.urls import handler404
+from django.urls import re_path
 from django.views.decorators.csrf import csrf_exempt
 from django.views.defaults import page_not_found
 
