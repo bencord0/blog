@@ -7,6 +7,7 @@ venv
 .cache
 .coverage*
 .tox
+.venv
 
 build
 db.sqlite3

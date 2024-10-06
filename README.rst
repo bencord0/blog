@@ -15,7 +15,8 @@ Getting started
 
   # Create and enter the virtualenv
   # You may need to install `pg_config` first, to build the postgres driver.
-  $ pipenv install --deploy && pipenv shell
+  $ python -m venv .venv && source .venv/bin/activate
+  (venv) $ pip install -r requirements.txt
 
   # The `blog` command is now availble inside the virtualenv shell.
   $ blog manage migrate

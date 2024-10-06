@@ -18,12 +18,6 @@
 import os
 import sys
 
-try:
-    from psycopg2cffi import compat
-    compat.register()
-except ImportError:
-    pass
-
 
 def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")

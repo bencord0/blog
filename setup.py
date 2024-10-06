@@ -37,7 +37,7 @@ setup(
         'gunicorn',
         'jinja2',
         'markdown',
-        'psycopg2cffi',
+        'psycopg2',
         'sentry-sdk',
         'uvicorn',
         'whitenoise',

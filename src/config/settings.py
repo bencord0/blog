@@ -24,12 +24,6 @@ import dj_database_url
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
-try:
-    from psycopg2cffi import compat
-    compat.register()
-except ImportError:
-    pass
-
 
 Truthy = ['True', 'true', '1', 'yes', 'y']
 BASE_DIR = Path(__file__).parent.parent
