@@ -12,15 +12,20 @@ build-for-registry:
 	docker push registry.condi.me/blog
 
 COMPOSE_ARGS := ""
-web:             COMPOSE_ARGS=-b 0.0.0.0:8000
+compose-web:     COMPOSE_ARGS=-b 0.0.0.0:8000
 compose-migrate: COMPOSE_ARGS=manage migrate
 compose-import:  COMPOSE_ARGS=manage import_entries /blogposts
 
-compose compose-migrate compose-import web:
-	docker-compose run \
+compose compose-migrate compose-import compose-web:
+	docker compose run \
 	    --rm --service-ports \
-	    -v $(pwd)/../blogposts:/blogposts \
+	    -v $(PWD)/../blogposts:/blogposts \
 		blog \
-		pipenv run blog $(COMPOSE_ARGS)
+		blog $(COMPOSE_ARGS)
+
+compose-db:
+	docker compose run \
+		--rm --service-ports \
+		db
 
 .PHONY: coverage test
