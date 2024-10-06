@@ -36,20 +36,20 @@ jobs:
       - run:
           name: tests
           command: |
-            pipenv install --dev --deploy
-            pipenv run tox
+            pip install -r requirements.txt
+            tox
           environment:
             TOXENV: py39
 
       - run:
           name: lint
-          command: pipenv run tox
+          command: tox
           environment:
             TOXENV: flake8
 
       - run:
           name: coverage
-          command: pipenv run tox
+          command: tox
           environment:
             TOXENV: coverage-report
 
