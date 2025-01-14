@@ -12,7 +12,7 @@ colorama==0.4.6
 coverage==7.6.1
 distlib==0.3.8
 dj-database-url==2.2.0
-Django==5.1.1
+Django==5.1.5
 django-database-url==1.0.3
 django-debug-toolbar==4.4.6
 django-jinja==2.11.0
