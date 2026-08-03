@@ -21,10 +21,6 @@ from pathlib import Path
 
 import dj_database_url
 
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
-
 Truthy = ['True', 'true', '1', 'yes', 'y']
 BASE_DIR = Path(__file__).parent.parent
 CUR_DIR = Path.cwd()
@@ -142,23 +138,3 @@ REST_FRAMEWORK = {
 }
 
 WELLKNOWN_KEYBASE = os.getenv('WELLKNOWN_KEYBASE')
-
-
-def before_breadcrumb(crumb, hint):
-    if crumb.get('category', None) == 'django.security.DisallowedHost':
-        return None
-    return crumb
-
-
-def before_send(event, hint):
-    if event.get('logger', None) == 'django.security.DisallowedHost':
-        return None
-    return event
-
-
-sentry_sdk.init(
-    dsn=os.getenv("SENTRY_DSN"),
-    integrations=[DjangoIntegration()],
-    before_breadcrumb=before_breadcrumb,
-    before_send=before_send,
-)

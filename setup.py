@@ -38,7 +38,6 @@ setup(
         'jinja2',
         'markdown',
         'psycopg2',
-        'sentry-sdk',
         'uvicorn',
         'whitenoise',
     ],
